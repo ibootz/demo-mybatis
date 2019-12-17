@@ -1,0 +1,1424 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ibootz.demomybatis.mapper.exam.ExamMapper">
+    <resultMap id="BaseResultMap" type="com.ibootz.demomybatis.model.exam.Exam">
+        <!--@mbg.generated-->
+        <!--@Table core_exam-->
+        <id column="pid" jdbcType="VARCHAR" property="pid"/>
+        <result column="orgId" jdbcType="VARCHAR" property="orgId"/>
+        <result column="name" jdbcType="VARCHAR" property="name"/>
+        <result column="description" jdbcType="VARCHAR" property="description"/>
+        <result column="repeatNum" jdbcType="TINYINT" property="repeatNum"/>
+        <result column="startTime" jdbcType="TIMESTAMP" property="startTime"/>
+        <result column="endTime" jdbcType="TIMESTAMP" property="endTime"/>
+        <result column="limitTime" jdbcType="INTEGER" property="limitTime"/>
+        <result column="passType" jdbcType="TINYINT" property="passType"/>
+        <result column="standard" jdbcType="INTEGER" property="standard"/>
+        <result column="totalNum" jdbcType="INTEGER" property="totalNum"/>
+        <result column="status" jdbcType="TINYINT" property="status"/>
+        <result column="difficulty" jdbcType="INTEGER" property="difficulty"/>
+        <result column="auditStatus" jdbcType="TINYINT" property="auditStatus"/>
+        <result column="isReview" jdbcType="TINYINT" property="isReview"/>
+        <result column="isOpen" jdbcType="TINYINT" property="isOpen"/>
+        <result column="isPublish" jdbcType="TINYINT" property="isPublish"/>
+        <result column="isSubjectShuffle" jdbcType="TINYINT" property="isSubjectShuffle"/>
+        <result column="isItemShuffle" jdbcType="TINYINT" property="isItemShuffle"/>
+        <result column="isAnonymAudit" jdbcType="TINYINT" property="isAnonymAudit"/>
+        <result column="isCompletionAudit" jdbcType="TINYINT" property="isCompletionAudit"/>
+        <result column="clientType" jdbcType="TINYINT" property="clientType"/>
+        <result column="breakNum" jdbcType="TINYINT" property="breakNum"/>
+        <result column="studyPoints" jdbcType="DOUBLE" property="studyPoints"/>
+        <result column="studyPlanId" jdbcType="VARCHAR" property="studyPlanId"/>
+        <result column="creator" jdbcType="VARCHAR" property="creator"/>
+        <result column="createTime" jdbcType="TIMESTAMP" property="createTime"/>
+        <result column="updater" jdbcType="VARCHAR" property="updater"/>
+        <result column="updateTime" jdbcType="TIMESTAMP" property="updateTime"/>
+    </resultMap>
+    <resultMap extends="BaseResultMap" id="ResultMapWithBLOBs"
+               type="com.ibootz.demomybatis.model.exam.Exam">
+        <!--@mbg.generated-->
+        <!--@Table core_exam-->
+        <result column="logoUrl" jdbcType="LONGVARCHAR" property="logoUrl"/>
+        <result column="pauseContent" jdbcType="LONGVARCHAR" property="pauseContent"/>
+    </resultMap>
+    <sql id="Base_Column_List">
+        <!--@mbg.generated-->
+        pid, orgId, `name`, description, repeatNum, startTime, endTime, limitTime, passType,
+        `standard`, totalNum, `status`, difficulty, auditStatus, isReview, isOpen, isPublish,
+        isSubjectShuffle, isItemShuffle, isAnonymAudit, isCompletionAudit, clientType, breakNum,
+        studyPoints, studyPlanId, creator, createTime, updater, updateTime
+    </sql>
+    <sql id="Blob_Column_List">
+        <!--@mbg.generated-->
+        logoUrl, pauseContent
+    </sql>
+    <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="ResultMapWithBLOBs">
+        <!--@mbg.generated-->
+        select
+        <include refid="Base_Column_List"/>
+        ,
+        <include refid="Blob_Column_List"/>
+        from core_exam
+        where pid = #{pid,jdbcType=VARCHAR}
+    </select>
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+        <!--@mbg.generated-->
+        delete from core_exam
+        where pid = #{pid,jdbcType=VARCHAR}
+    </delete>
+    <insert id="insert" keyColumn="pid" keyProperty="pid"
+            parameterType="com.ibootz.demomybatis.model.exam.Exam" useGeneratedKeys="true">
+        <!--@mbg.generated-->
+        insert into core_exam (orgId, `name`, description,
+        repeatNum, startTime, endTime,
+        limitTime, passType, `standard`,
+        totalNum, `status`, difficulty,
+        auditStatus, isReview, isOpen,
+        isPublish, isSubjectShuffle, isItemShuffle,
+        isAnonymAudit, isCompletionAudit, clientType,
+        breakNum, studyPoints, studyPlanId,
+        creator, createTime, updater,
+        updateTime, logoUrl, pauseContent
+        )
+        values (#{orgId,jdbcType=VARCHAR}, #{name,jdbcType=VARCHAR},
+        #{description,jdbcType=VARCHAR},
+        #{repeatNum,jdbcType=TINYINT}, #{startTime,jdbcType=TIMESTAMP},
+        #{endTime,jdbcType=TIMESTAMP},
+        #{limitTime,jdbcType=INTEGER}, #{passType,jdbcType=TINYINT}, #{standard,jdbcType=INTEGER},
+        #{totalNum,jdbcType=INTEGER}, #{status,jdbcType=TINYINT}, #{difficulty,jdbcType=INTEGER},
+        #{auditStatus,jdbcType=TINYINT}, #{isReview,jdbcType=TINYINT}, #{isOpen,jdbcType=TINYINT},
+        #{isPublish,jdbcType=TINYINT}, #{isSubjectShuffle,jdbcType=TINYINT},
+        #{isItemShuffle,jdbcType=TINYINT},
+        #{isAnonymAudit,jdbcType=TINYINT}, #{isCompletionAudit,jdbcType=TINYINT},
+        #{clientType,jdbcType=TINYINT},
+        #{breakNum,jdbcType=TINYINT}, #{studyPoints,jdbcType=DOUBLE},
+        #{studyPlanId,jdbcType=VARCHAR},
+        #{creator,jdbcType=VARCHAR}, #{createTime,jdbcType=TIMESTAMP}, #{updater,jdbcType=VARCHAR},
+        #{updateTime,jdbcType=TIMESTAMP}, #{logoUrl,jdbcType=LONGVARCHAR},
+        #{pauseContent,jdbcType=LONGVARCHAR}
+        )
+    </insert>
+    <insert id="insertSelective" keyColumn="pid" keyProperty="pid"
+            parameterType="com.ibootz.demomybatis.model.exam.Exam" useGeneratedKeys="true">
+        <!--@mbg.generated-->
+        insert into core_exam
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="orgId != null">
+                orgId,
+            </if>
+            <if test="name != null">
+                `name`,
+            </if>
+            <if test="description != null">
+                description,
+            </if>
+            <if test="repeatNum != null">
+                repeatNum,
+            </if>
+            <if test="startTime != null">
+                startTime,
+            </if>
+            <if test="endTime != null">
+                endTime,
+            </if>
+            <if test="limitTime != null">
+                limitTime,
+            </if>
+            <if test="passType != null">
+                passType,
+            </if>
+            <if test="standard != null">
+                `standard`,
+            </if>
+            <if test="totalNum != null">
+                totalNum,
+            </if>
+            <if test="status != null">
+                `status`,
+            </if>
+            <if test="difficulty != null">
+                difficulty,
+            </if>
+            <if test="auditStatus != null">
+                auditStatus,
+            </if>
+            <if test="isReview != null">
+                isReview,
+            </if>
+            <if test="isOpen != null">
+                isOpen,
+            </if>
+            <if test="isPublish != null">
+                isPublish,
+            </if>
+            <if test="isSubjectShuffle != null">
+                isSubjectShuffle,
+            </if>
+            <if test="isItemShuffle != null">
+                isItemShuffle,
+            </if>
+            <if test="isAnonymAudit != null">
+                isAnonymAudit,
+            </if>
+            <if test="isCompletionAudit != null">
+                isCompletionAudit,
+            </if>
+            <if test="clientType != null">
+                clientType,
+            </if>
+            <if test="breakNum != null">
+                breakNum,
+            </if>
+            <if test="studyPoints != null">
+                studyPoints,
+            </if>
+            <if test="studyPlanId != null">
+                studyPlanId,
+            </if>
+            <if test="creator != null">
+                creator,
+            </if>
+            <if test="createTime != null">
+                createTime,
+            </if>
+            <if test="updater != null">
+                updater,
+            </if>
+            <if test="updateTime != null">
+                updateTime,
+            </if>
+            <if test="logoUrl != null">
+                logoUrl,
+            </if>
+            <if test="pauseContent != null">
+                pauseContent,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="orgId != null">
+                #{orgId,jdbcType=VARCHAR},
+            </if>
+            <if test="name != null">
+                #{name,jdbcType=VARCHAR},
+            </if>
+            <if test="description != null">
+                #{description,jdbcType=VARCHAR},
+            </if>
+            <if test="repeatNum != null">
+                #{repeatNum,jdbcType=TINYINT},
+            </if>
+            <if test="startTime != null">
+                #{startTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="endTime != null">
+                #{endTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="limitTime != null">
+                #{limitTime,jdbcType=INTEGER},
+            </if>
+            <if test="passType != null">
+                #{passType,jdbcType=TINYINT},
+            </if>
+            <if test="standard != null">
+                #{standard,jdbcType=INTEGER},
+            </if>
+            <if test="totalNum != null">
+                #{totalNum,jdbcType=INTEGER},
+            </if>
+            <if test="status != null">
+                #{status,jdbcType=TINYINT},
+            </if>
+            <if test="difficulty != null">
+                #{difficulty,jdbcType=INTEGER},
+            </if>
+            <if test="auditStatus != null">
+                #{auditStatus,jdbcType=TINYINT},
+            </if>
+            <if test="isReview != null">
+                #{isReview,jdbcType=TINYINT},
+            </if>
+            <if test="isOpen != null">
+                #{isOpen,jdbcType=TINYINT},
+            </if>
+            <if test="isPublish != null">
+                #{isPublish,jdbcType=TINYINT},
+            </if>
+            <if test="isSubjectShuffle != null">
+                #{isSubjectShuffle,jdbcType=TINYINT},
+            </if>
+            <if test="isItemShuffle != null">
+                #{isItemShuffle,jdbcType=TINYINT},
+            </if>
+            <if test="isAnonymAudit != null">
+                #{isAnonymAudit,jdbcType=TINYINT},
+            </if>
+            <if test="isCompletionAudit != null">
+                #{isCompletionAudit,jdbcType=TINYINT},
+            </if>
+            <if test="clientType != null">
+                #{clientType,jdbcType=TINYINT},
+            </if>
+            <if test="breakNum != null">
+                #{breakNum,jdbcType=TINYINT},
+            </if>
+            <if test="studyPoints != null">
+                #{studyPoints,jdbcType=DOUBLE},
+            </if>
+            <if test="studyPlanId != null">
+                #{studyPlanId,jdbcType=VARCHAR},
+            </if>
+            <if test="creator != null">
+                #{creator,jdbcType=VARCHAR},
+            </if>
+            <if test="createTime != null">
+                #{createTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="updater != null">
+                #{updater,jdbcType=VARCHAR},
+            </if>
+            <if test="updateTime != null">
+                #{updateTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="logoUrl != null">
+                #{logoUrl,jdbcType=LONGVARCHAR},
+            </if>
+            <if test="pauseContent != null">
+                #{pauseContent,jdbcType=LONGVARCHAR},
+            </if>
+        </trim>
+    </insert>
+    <update id="updateByPrimaryKeySelective" parameterType="com.ibootz.demomybatis.model.exam.Exam">
+        <!--@mbg.generated-->
+        update core_exam
+        <set>
+            <if test="orgId != null">
+                orgId = #{orgId,jdbcType=VARCHAR},
+            </if>
+            <if test="name != null">
+                `name` = #{name,jdbcType=VARCHAR},
+            </if>
+            <if test="description != null">
+                description = #{description,jdbcType=VARCHAR},
+            </if>
+            <if test="repeatNum != null">
+                repeatNum = #{repeatNum,jdbcType=TINYINT},
+            </if>
+            <if test="startTime != null">
+                startTime = #{startTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="endTime != null">
+                endTime = #{endTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="limitTime != null">
+                limitTime = #{limitTime,jdbcType=INTEGER},
+            </if>
+            <if test="passType != null">
+                passType = #{passType,jdbcType=TINYINT},
+            </if>
+            <if test="standard != null">
+                `standard` = #{standard,jdbcType=INTEGER},
+            </if>
+            <if test="totalNum != null">
+                totalNum = #{totalNum,jdbcType=INTEGER},
+            </if>
+            <if test="status != null">
+                `status` = #{status,jdbcType=TINYINT},
+            </if>
+            <if test="difficulty != null">
+                difficulty = #{difficulty,jdbcType=INTEGER},
+            </if>
+            <if test="auditStatus != null">
+                auditStatus = #{auditStatus,jdbcType=TINYINT},
+            </if>
+            <if test="isReview != null">
+                isReview = #{isReview,jdbcType=TINYINT},
+            </if>
+            <if test="isOpen != null">
+                isOpen = #{isOpen,jdbcType=TINYINT},
+            </if>
+            <if test="isPublish != null">
+                isPublish = #{isPublish,jdbcType=TINYINT},
+            </if>
+            <if test="isSubjectShuffle != null">
+                isSubjectShuffle = #{isSubjectShuffle,jdbcType=TINYINT},
+            </if>
+            <if test="isItemShuffle != null">
+                isItemShuffle = #{isItemShuffle,jdbcType=TINYINT},
+            </if>
+            <if test="isAnonymAudit != null">
+                isAnonymAudit = #{isAnonymAudit,jdbcType=TINYINT},
+            </if>
+            <if test="isCompletionAudit != null">
+                isCompletionAudit = #{isCompletionAudit,jdbcType=TINYINT},
+            </if>
+            <if test="clientType != null">
+                clientType = #{clientType,jdbcType=TINYINT},
+            </if>
+            <if test="breakNum != null">
+                breakNum = #{breakNum,jdbcType=TINYINT},
+            </if>
+            <if test="studyPoints != null">
+                studyPoints = #{studyPoints,jdbcType=DOUBLE},
+            </if>
+            <if test="studyPlanId != null">
+                studyPlanId = #{studyPlanId,jdbcType=VARCHAR},
+            </if>
+            <if test="creator != null">
+                creator = #{creator,jdbcType=VARCHAR},
+            </if>
+            <if test="createTime != null">
+                createTime = #{createTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="updater != null">
+                updater = #{updater,jdbcType=VARCHAR},
+            </if>
+            <if test="updateTime != null">
+                updateTime = #{updateTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="logoUrl != null">
+                logoUrl = #{logoUrl,jdbcType=LONGVARCHAR},
+            </if>
+            <if test="pauseContent != null">
+                pauseContent = #{pauseContent,jdbcType=LONGVARCHAR},
+            </if>
+        </set>
+        where pid = #{pid,jdbcType=VARCHAR}
+    </update>
+    <update id="updateByPrimaryKeyWithBLOBs" parameterType="com.ibootz.demomybatis.model.exam.Exam">
+        <!--@mbg.generated-->
+        update core_exam
+        set orgId = #{orgId,jdbcType=VARCHAR},
+        `name` = #{name,jdbcType=VARCHAR},
+        description = #{description,jdbcType=VARCHAR},
+        repeatNum = #{repeatNum,jdbcType=TINYINT},
+        startTime = #{startTime,jdbcType=TIMESTAMP},
+        endTime = #{endTime,jdbcType=TIMESTAMP},
+        limitTime = #{limitTime,jdbcType=INTEGER},
+        passType = #{passType,jdbcType=TINYINT},
+        `standard` = #{standard,jdbcType=INTEGER},
+        totalNum = #{totalNum,jdbcType=INTEGER},
+        `status` = #{status,jdbcType=TINYINT},
+        difficulty = #{difficulty,jdbcType=INTEGER},
+        auditStatus = #{auditStatus,jdbcType=TINYINT},
+        isReview = #{isReview,jdbcType=TINYINT},
+        isOpen = #{isOpen,jdbcType=TINYINT},
+        isPublish = #{isPublish,jdbcType=TINYINT},
+        isSubjectShuffle = #{isSubjectShuffle,jdbcType=TINYINT},
+        isItemShuffle = #{isItemShuffle,jdbcType=TINYINT},
+        isAnonymAudit = #{isAnonymAudit,jdbcType=TINYINT},
+        isCompletionAudit = #{isCompletionAudit,jdbcType=TINYINT},
+        clientType = #{clientType,jdbcType=TINYINT},
+        breakNum = #{breakNum,jdbcType=TINYINT},
+        studyPoints = #{studyPoints,jdbcType=DOUBLE},
+        studyPlanId = #{studyPlanId,jdbcType=VARCHAR},
+        creator = #{creator,jdbcType=VARCHAR},
+        createTime = #{createTime,jdbcType=TIMESTAMP},
+        updater = #{updater,jdbcType=VARCHAR},
+        updateTime = #{updateTime,jdbcType=TIMESTAMP},
+        logoUrl = #{logoUrl,jdbcType=LONGVARCHAR},
+        pauseContent = #{pauseContent,jdbcType=LONGVARCHAR}
+        where pid = #{pid,jdbcType=VARCHAR}
+    </update>
+    <update id="updateByPrimaryKey" parameterType="com.ibootz.demomybatis.model.exam.Exam">
+        <!--@mbg.generated-->
+        update core_exam
+        set orgId = #{orgId,jdbcType=VARCHAR},
+        `name` = #{name,jdbcType=VARCHAR},
+        description = #{description,jdbcType=VARCHAR},
+        repeatNum = #{repeatNum,jdbcType=TINYINT},
+        startTime = #{startTime,jdbcType=TIMESTAMP},
+        endTime = #{endTime,jdbcType=TIMESTAMP},
+        limitTime = #{limitTime,jdbcType=INTEGER},
+        passType = #{passType,jdbcType=TINYINT},
+        `standard` = #{standard,jdbcType=INTEGER},
+        totalNum = #{totalNum,jdbcType=INTEGER},
+        `status` = #{status,jdbcType=TINYINT},
+        difficulty = #{difficulty,jdbcType=INTEGER},
+        auditStatus = #{auditStatus,jdbcType=TINYINT},
+        isReview = #{isReview,jdbcType=TINYINT},
+        isOpen = #{isOpen,jdbcType=TINYINT},
+        isPublish = #{isPublish,jdbcType=TINYINT},
+        isSubjectShuffle = #{isSubjectShuffle,jdbcType=TINYINT},
+        isItemShuffle = #{isItemShuffle,jdbcType=TINYINT},
+        isAnonymAudit = #{isAnonymAudit,jdbcType=TINYINT},
+        isCompletionAudit = #{isCompletionAudit,jdbcType=TINYINT},
+        clientType = #{clientType,jdbcType=TINYINT},
+        breakNum = #{breakNum,jdbcType=TINYINT},
+        studyPoints = #{studyPoints,jdbcType=DOUBLE},
+        studyPlanId = #{studyPlanId,jdbcType=VARCHAR},
+        creator = #{creator,jdbcType=VARCHAR},
+        createTime = #{createTime,jdbcType=TIMESTAMP},
+        updater = #{updater,jdbcType=VARCHAR},
+        updateTime = #{updateTime,jdbcType=TIMESTAMP}
+        where pid = #{pid,jdbcType=VARCHAR}
+    </update>
+    <select id="selectByOrgIdAndAuditStatus" resultMap="BaseResultMap">
+        <!--@mbg.generated-->
+        select
+        <include refid="Base_Column_List"/>
+        from core_exam
+        where orgId=#{orgId,jdbcType=VARCHAR} and auditStatus=#{auditStatus,jdbcType=TINYINT}
+    </select>
+    <update id="updateBatch" parameterType="java.util.List">
+        <!--@mbg.generated-->
+        update core_exam
+        <trim prefix="set" suffixOverrides=",">
+            <trim prefix="orgId = case" suffix="end,">
+                <foreach collection="list" index="index" item="item">
+                    when pid = #{item.pid,jdbcType=VARCHAR} then #{item.orgId,jdbcType=VARCHAR}
+                </foreach>
+            </trim>
+            <trim prefix="`name` = case" suffix="end,">
+                <foreach collection="list" index="index" item="item">
+                    when pid = #{item.pid,jdbcType=VARCHAR} then #{item.name,jdbcType=VARCHAR}
+                </foreach>
+            </trim>
+            <trim prefix="description = case" suffix="end,">
+                <foreach collection="list" index="index" item="item">
+                    when pid = #{item.pid,jdbcType=VARCHAR} then
+                    #{item.description,jdbcType=VARCHAR}
+                </foreach>
+            </trim>
+            <trim prefix="repeatNum = case" suffix="end,">
+                <foreach collection="list" index="index" item="item">
+                    when pid = #{item.pid,jdbcType=VARCHAR} then #{item.repeatNum,jdbcType=TINYINT}
+                </foreach>
+            </trim>
+            <trim prefix="startTime = case" suffix="end,">
+                <foreach collection="list" index="index" item="item">
+                    when pid = #{item.pid,jdbcType=VARCHAR} then
+                    #{item.startTime,jdbcType=TIMESTAMP}
+                </foreach>
+            </trim>
+            <trim prefix="endTime = case" suffix="end,">
+                <foreach collection="list" index="index" item="item">
+                    when pid = #{item.pid,jdbcType=VARCHAR} then #{item.endTime,jdbcType=TIMESTAMP}
+                </foreach>
+            </trim>
+            <trim prefix="limitTime = case" suffix="end,">
+                <foreach collection="list" index="index" item="item">
+                    when pid = #{item.pid,jdbcType=VARCHAR} then #{item.limitTime,jdbcType=INTEGER}
+                </foreach>
+            </trim>
+            <trim prefix="passType = case" suffix="end,">
+                <foreach collection="list" index="index" item="item">
+                    when pid = #{item.pid,jdbcType=VARCHAR} then #{item.passType,jdbcType=TINYINT}
+                </foreach>
+            </trim>
+            <trim prefix="`standard` = case" suffix="end,">
+                <foreach collection="list" index="index" item="item">
+                    when pid = #{item.pid,jdbcType=VARCHAR} then #{item.standard,jdbcType=INTEGER}
+                </foreach>
+            </trim>
+            <trim prefix="totalNum = case" suffix="end,">
+                <foreach collection="list" index="index" item="item">
+                    when pid = #{item.pid,jdbcType=VARCHAR} then #{item.totalNum,jdbcType=INTEGER}
+                </foreach>
+            </trim>
+            <trim prefix="`status` = case" suffix="end,">
+                <foreach collection="list" index="index" item="item">
+                    when pid = #{item.pid,jdbcType=VARCHAR} then #{item.status,jdbcType=TINYINT}
+                </foreach>
+            </trim>
+            <trim prefix="difficulty = case" suffix="end,">
+                <foreach collection="list" index="index" item="item">
+                    when pid = #{item.pid,jdbcType=VARCHAR} then #{item.difficulty,jdbcType=INTEGER}
+                </foreach>
+            </trim>
+            <trim prefix="auditStatus = case" suffix="end,">
+                <foreach collection="list" index="index" item="item">
+                    when pid = #{item.pid,jdbcType=VARCHAR} then
+                    #{item.auditStatus,jdbcType=TINYINT}
+                </foreach>
+            </trim>
+            <trim prefix="isReview = case" suffix="end,">
+                <foreach collection="list" index="index" item="item">
+                    when pid = #{item.pid,jdbcType=VARCHAR} then #{item.isReview,jdbcType=TINYINT}
+                </foreach>
+            </trim>
+            <trim prefix="isOpen = case" suffix="end,">
+                <foreach collection="list" index="index" item="item">
+                    when pid = #{item.pid,jdbcType=VARCHAR} then #{item.isOpen,jdbcType=TINYINT}
+                </foreach>
+            </trim>
+            <trim prefix="isPublish = case" suffix="end,">
+                <foreach collection="list" index="index" item="item">
+                    when pid = #{item.pid,jdbcType=VARCHAR} then #{item.isPublish,jdbcType=TINYINT}
+                </foreach>
+            </trim>
+            <trim prefix="isSubjectShuffle = case" suffix="end,">
+                <foreach collection="list" index="index" item="item">
+                    when pid = #{item.pid,jdbcType=VARCHAR} then
+                    #{item.isSubjectShuffle,jdbcType=TINYINT}
+                </foreach>
+            </trim>
+            <trim prefix="isItemShuffle = case" suffix="end,">
+                <foreach collection="list" index="index" item="item">
+                    when pid = #{item.pid,jdbcType=VARCHAR} then
+                    #{item.isItemShuffle,jdbcType=TINYINT}
+                </foreach>
+            </trim>
+            <trim prefix="isAnonymAudit = case" suffix="end,">
+                <foreach collection="list" index="index" item="item">
+                    when pid = #{item.pid,jdbcType=VARCHAR} then
+                    #{item.isAnonymAudit,jdbcType=TINYINT}
+                </foreach>
+            </trim>
+            <trim prefix="isCompletionAudit = case" suffix="end,">
+                <foreach collection="list" index="index" item="item">
+                    when pid = #{item.pid,jdbcType=VARCHAR} then
+                    #{item.isCompletionAudit,jdbcType=TINYINT}
+                </foreach>
+            </trim>
+            <trim prefix="clientType = case" suffix="end,">
+                <foreach collection="list" index="index" item="item">
+                    when pid = #{item.pid,jdbcType=VARCHAR} then #{item.clientType,jdbcType=TINYINT}
+                </foreach>
+            </trim>
+            <trim prefix="breakNum = case" suffix="end,">
+                <foreach collection="list" index="index" item="item">
+                    when pid = #{item.pid,jdbcType=VARCHAR} then #{item.breakNum,jdbcType=TINYINT}
+                </foreach>
+            </trim>
+            <trim prefix="studyPoints = case" suffix="end,">
+                <foreach collection="list" index="index" item="item">
+                    when pid = #{item.pid,jdbcType=VARCHAR} then #{item.studyPoints,jdbcType=DOUBLE}
+                </foreach>
+            </trim>
+            <trim prefix="studyPlanId = case" suffix="end,">
+                <foreach collection="list" index="index" item="item">
+                    when pid = #{item.pid,jdbcType=VARCHAR} then
+                    #{item.studyPlanId,jdbcType=VARCHAR}
+                </foreach>
+            </trim>
+            <trim prefix="creator = case" suffix="end,">
+                <foreach collection="list" index="index" item="item">
+                    when pid = #{item.pid,jdbcType=VARCHAR} then #{item.creator,jdbcType=VARCHAR}
+                </foreach>
+            </trim>
+            <trim prefix="createTime = case" suffix="end,">
+                <foreach collection="list" index="index" item="item">
+                    when pid = #{item.pid,jdbcType=VARCHAR} then
+                    #{item.createTime,jdbcType=TIMESTAMP}
+                </foreach>
+            </trim>
+            <trim prefix="updater = case" suffix="end,">
+                <foreach collection="list" index="index" item="item">
+                    when pid = #{item.pid,jdbcType=VARCHAR} then #{item.updater,jdbcType=VARCHAR}
+                </foreach>
+            </trim>
+            <trim prefix="updateTime = case" suffix="end,">
+                <foreach collection="list" index="index" item="item">
+                    when pid = #{item.pid,jdbcType=VARCHAR} then
+                    #{item.updateTime,jdbcType=TIMESTAMP}
+                </foreach>
+            </trim>
+            <trim prefix="logoUrl = case" suffix="end,">
+                <foreach collection="list" index="index" item="item">
+                    when pid = #{item.pid,jdbcType=VARCHAR} then
+                    #{item.logoUrl,jdbcType=LONGVARCHAR}
+                </foreach>
+            </trim>
+            <trim prefix="pauseContent = case" suffix="end,">
+                <foreach collection="list" index="index" item="item">
+                    when pid = #{item.pid,jdbcType=VARCHAR} then
+                    #{item.pauseContent,jdbcType=LONGVARCHAR}
+                </foreach>
+            </trim>
+        </trim>
+        where pid in
+        <foreach close=")" collection="list" item="item" open="(" separator=", ">
+            #{item.pid,jdbcType=VARCHAR}
+        </foreach>
+    </update>
+    <update id="updateBatchSelective" parameterType="java.util.List">
+        <!--@mbg.generated-->
+        update core_exam
+        <trim prefix="set" suffixOverrides=",">
+            <trim prefix="orgId = case" suffix="end,">
+                <foreach collection="list" index="index" item="item">
+                    <if test="item.orgId != null">
+                        when pid = #{item.pid,jdbcType=VARCHAR} then #{item.orgId,jdbcType=VARCHAR}
+                    </if>
+                </foreach>
+            </trim>
+            <trim prefix="`name` = case" suffix="end,">
+                <foreach collection="list" index="index" item="item">
+                    <if test="item.name != null">
+                        when pid = #{item.pid,jdbcType=VARCHAR} then #{item.name,jdbcType=VARCHAR}
+                    </if>
+                </foreach>
+            </trim>
+            <trim prefix="description = case" suffix="end,">
+                <foreach collection="list" index="index" item="item">
+                    <if test="item.description != null">
+                        when pid = #{item.pid,jdbcType=VARCHAR} then
+                        #{item.description,jdbcType=VARCHAR}
+                    </if>
+                </foreach>
+            </trim>
+            <trim prefix="repeatNum = case" suffix="end,">
+                <foreach collection="list" index="index" item="item">
+                    <if test="item.repeatNum != null">
+                        when pid = #{item.pid,jdbcType=VARCHAR} then
+                        #{item.repeatNum,jdbcType=TINYINT}
+                    </if>
+                </foreach>
+            </trim>
+            <trim prefix="startTime = case" suffix="end,">
+                <foreach collection="list" index="index" item="item">
+                    <if test="item.startTime != null">
+                        when pid = #{item.pid,jdbcType=VARCHAR} then
+                        #{item.startTime,jdbcType=TIMESTAMP}
+                    </if>
+                </foreach>
+            </trim>
+            <trim prefix="endTime = case" suffix="end,">
+                <foreach collection="list" index="index" item="item">
+                    <if test="item.endTime != null">
+                        when pid = #{item.pid,jdbcType=VARCHAR} then
+                        #{item.endTime,jdbcType=TIMESTAMP}
+                    </if>
+                </foreach>
+            </trim>
+            <trim prefix="limitTime = case" suffix="end,">
+                <foreach collection="list" index="index" item="item">
+                    <if test="item.limitTime != null">
+                        when pid = #{item.pid,jdbcType=VARCHAR} then
+                        #{item.limitTime,jdbcType=INTEGER}
+                    </if>
+                </foreach>
+            </trim>
+            <trim prefix="passType = case" suffix="end,">
+                <foreach collection="list" index="index" item="item">
+                    <if test="item.passType != null">
+                        when pid = #{item.pid,jdbcType=VARCHAR} then
+                        #{item.passType,jdbcType=TINYINT}
+                    </if>
+                </foreach>
+            </trim>
+            <trim prefix="`standard` = case" suffix="end,">
+                <foreach collection="list" index="index" item="item">
+                    <if test="item.standard != null">
+                        when pid = #{item.pid,jdbcType=VARCHAR} then
+                        #{item.standard,jdbcType=INTEGER}
+                    </if>
+                </foreach>
+            </trim>
+            <trim prefix="totalNum = case" suffix="end,">
+                <foreach collection="list" index="index" item="item">
+                    <if test="item.totalNum != null">
+                        when pid = #{item.pid,jdbcType=VARCHAR} then
+                        #{item.totalNum,jdbcType=INTEGER}
+                    </if>
+                </foreach>
+            </trim>
+            <trim prefix="`status` = case" suffix="end,">
+                <foreach collection="list" index="index" item="item">
+                    <if test="item.status != null">
+                        when pid = #{item.pid,jdbcType=VARCHAR} then #{item.status,jdbcType=TINYINT}
+                    </if>
+                </foreach>
+            </trim>
+            <trim prefix="difficulty = case" suffix="end,">
+                <foreach collection="list" index="index" item="item">
+                    <if test="item.difficulty != null">
+                        when pid = #{item.pid,jdbcType=VARCHAR} then
+                        #{item.difficulty,jdbcType=INTEGER}
+                    </if>
+                </foreach>
+            </trim>
+            <trim prefix="auditStatus = case" suffix="end,">
+                <foreach collection="list" index="index" item="item">
+                    <if test="item.auditStatus != null">
+                        when pid = #{item.pid,jdbcType=VARCHAR} then
+                        #{item.auditStatus,jdbcType=TINYINT}
+                    </if>
+                </foreach>
+            </trim>
+            <trim prefix="isReview = case" suffix="end,">
+                <foreach collection="list" index="index" item="item">
+                    <if test="item.isReview != null">
+                        when pid = #{item.pid,jdbcType=VARCHAR} then
+                        #{item.isReview,jdbcType=TINYINT}
+                    </if>
+                </foreach>
+            </trim>
+            <trim prefix="isOpen = case" suffix="end,">
+                <foreach collection="list" index="index" item="item">
+                    <if test="item.isOpen != null">
+                        when pid = #{item.pid,jdbcType=VARCHAR} then #{item.isOpen,jdbcType=TINYINT}
+                    </if>
+                </foreach>
+            </trim>
+            <trim prefix="isPublish = case" suffix="end,">
+                <foreach collection="list" index="index" item="item">
+                    <if test="item.isPublish != null">
+                        when pid = #{item.pid,jdbcType=VARCHAR} then
+                        #{item.isPublish,jdbcType=TINYINT}
+                    </if>
+                </foreach>
+            </trim>
+            <trim prefix="isSubjectShuffle = case" suffix="end,">
+                <foreach collection="list" index="index" item="item">
+                    <if test="item.isSubjectShuffle != null">
+                        when pid = #{item.pid,jdbcType=VARCHAR} then
+                        #{item.isSubjectShuffle,jdbcType=TINYINT}
+                    </if>
+                </foreach>
+            </trim>
+            <trim prefix="isItemShuffle = case" suffix="end,">
+                <foreach collection="list" index="index" item="item">
+                    <if test="item.isItemShuffle != null">
+                        when pid = #{item.pid,jdbcType=VARCHAR} then
+                        #{item.isItemShuffle,jdbcType=TINYINT}
+                    </if>
+                </foreach>
+            </trim>
+            <trim prefix="isAnonymAudit = case" suffix="end,">
+                <foreach collection="list" index="index" item="item">
+                    <if test="item.isAnonymAudit != null">
+                        when pid = #{item.pid,jdbcType=VARCHAR} then
+                        #{item.isAnonymAudit,jdbcType=TINYINT}
+                    </if>
+                </foreach>
+            </trim>
+            <trim prefix="isCompletionAudit = case" suffix="end,">
+                <foreach collection="list" index="index" item="item">
+                    <if test="item.isCompletionAudit != null">
+                        when pid = #{item.pid,jdbcType=VARCHAR} then
+                        #{item.isCompletionAudit,jdbcType=TINYINT}
+                    </if>
+                </foreach>
+            </trim>
+            <trim prefix="clientType = case" suffix="end,">
+                <foreach collection="list" index="index" item="item">
+                    <if test="item.clientType != null">
+                        when pid = #{item.pid,jdbcType=VARCHAR} then
+                        #{item.clientType,jdbcType=TINYINT}
+                    </if>
+                </foreach>
+            </trim>
+            <trim prefix="breakNum = case" suffix="end,">
+                <foreach collection="list" index="index" item="item">
+                    <if test="item.breakNum != null">
+                        when pid = #{item.pid,jdbcType=VARCHAR} then
+                        #{item.breakNum,jdbcType=TINYINT}
+                    </if>
+                </foreach>
+            </trim>
+            <trim prefix="studyPoints = case" suffix="end,">
+                <foreach collection="list" index="index" item="item">
+                    <if test="item.studyPoints != null">
+                        when pid = #{item.pid,jdbcType=VARCHAR} then
+                        #{item.studyPoints,jdbcType=DOUBLE}
+                    </if>
+                </foreach>
+            </trim>
+            <trim prefix="studyPlanId = case" suffix="end,">
+                <foreach collection="list" index="index" item="item">
+                    <if test="item.studyPlanId != null">
+                        when pid = #{item.pid,jdbcType=VARCHAR} then
+                        #{item.studyPlanId,jdbcType=VARCHAR}
+                    </if>
+                </foreach>
+            </trim>
+            <trim prefix="creator = case" suffix="end,">
+                <foreach collection="list" index="index" item="item">
+                    <if test="item.creator != null">
+                        when pid = #{item.pid,jdbcType=VARCHAR} then
+                        #{item.creator,jdbcType=VARCHAR}
+                    </if>
+                </foreach>
+            </trim>
+            <trim prefix="createTime = case" suffix="end,">
+                <foreach collection="list" index="index" item="item">
+                    <if test="item.createTime != null">
+                        when pid = #{item.pid,jdbcType=VARCHAR} then
+                        #{item.createTime,jdbcType=TIMESTAMP}
+                    </if>
+                </foreach>
+            </trim>
+            <trim prefix="updater = case" suffix="end,">
+                <foreach collection="list" index="index" item="item">
+                    <if test="item.updater != null">
+                        when pid = #{item.pid,jdbcType=VARCHAR} then
+                        #{item.updater,jdbcType=VARCHAR}
+                    </if>
+                </foreach>
+            </trim>
+            <trim prefix="updateTime = case" suffix="end,">
+                <foreach collection="list" index="index" item="item">
+                    <if test="item.updateTime != null">
+                        when pid = #{item.pid,jdbcType=VARCHAR} then
+                        #{item.updateTime,jdbcType=TIMESTAMP}
+                    </if>
+                </foreach>
+            </trim>
+            <trim prefix="logoUrl = case" suffix="end,">
+                <foreach collection="list" index="index" item="item">
+                    <if test="item.logoUrl != null">
+                        when pid = #{item.pid,jdbcType=VARCHAR} then
+                        #{item.logoUrl,jdbcType=LONGVARCHAR}
+                    </if>
+                </foreach>
+            </trim>
+            <trim prefix="pauseContent = case" suffix="end,">
+                <foreach collection="list" index="index" item="item">
+                    <if test="item.pauseContent != null">
+                        when pid = #{item.pid,jdbcType=VARCHAR} then
+                        #{item.pauseContent,jdbcType=LONGVARCHAR}
+                    </if>
+                </foreach>
+            </trim>
+        </trim>
+        where pid in
+        <foreach close=")" collection="list" item="item" open="(" separator=", ">
+            #{item.pid,jdbcType=VARCHAR}
+        </foreach>
+    </update>
+    <insert id="batchInsert" keyColumn="pid" keyProperty="pid" parameterType="map"
+            useGeneratedKeys="true">
+        <!--@mbg.generated-->
+        insert into core_exam
+        (orgId, `name`, description, repeatNum, startTime, endTime, limitTime, passType,
+        `standard`, totalNum, `status`, difficulty, auditStatus, isReview, isOpen, isPublish,
+        isSubjectShuffle, isItemShuffle, isAnonymAudit, isCompletionAudit, clientType,
+        breakNum, studyPoints, studyPlanId, creator, createTime, updater, updateTime, logoUrl,
+        pauseContent)
+        values
+        <foreach collection="list" item="item" separator=",">
+            (#{item.orgId,jdbcType=VARCHAR}, #{item.name,jdbcType=VARCHAR},
+            #{item.description,jdbcType=VARCHAR},
+            #{item.repeatNum,jdbcType=TINYINT}, #{item.startTime,jdbcType=TIMESTAMP},
+            #{item.endTime,jdbcType=TIMESTAMP},
+            #{item.limitTime,jdbcType=INTEGER}, #{item.passType,jdbcType=TINYINT},
+            #{item.standard,jdbcType=INTEGER},
+            #{item.totalNum,jdbcType=INTEGER}, #{item.status,jdbcType=TINYINT},
+            #{item.difficulty,jdbcType=INTEGER},
+            #{item.auditStatus,jdbcType=TINYINT}, #{item.isReview,jdbcType=TINYINT},
+            #{item.isOpen,jdbcType=TINYINT},
+            #{item.isPublish,jdbcType=TINYINT}, #{item.isSubjectShuffle,jdbcType=TINYINT},
+            #{item.isItemShuffle,jdbcType=TINYINT}, #{item.isAnonymAudit,jdbcType=TINYINT},
+            #{item.isCompletionAudit,jdbcType=TINYINT}, #{item.clientType,jdbcType=TINYINT},
+            #{item.breakNum,jdbcType=TINYINT}, #{item.studyPoints,jdbcType=DOUBLE},
+            #{item.studyPlanId,jdbcType=VARCHAR},
+            #{item.creator,jdbcType=VARCHAR}, #{item.createTime,jdbcType=TIMESTAMP},
+            #{item.updater,jdbcType=VARCHAR},
+            #{item.updateTime,jdbcType=TIMESTAMP}, #{item.logoUrl,jdbcType=LONGVARCHAR},
+            #{item.pauseContent,jdbcType=LONGVARCHAR}
+            )
+        </foreach>
+    </insert>
+    <insert id="insertOrUpdate" keyColumn="pid" keyProperty="pid"
+            parameterType="com.ibootz.demomybatis.model.exam.Exam" useGeneratedKeys="true">
+        <!--@mbg.generated-->
+        insert into core_exam
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="pid != null">
+                pid,
+            </if>
+            orgId,
+            `name`,
+            description,
+            repeatNum,
+            startTime,
+            endTime,
+            limitTime,
+            passType,
+            `standard`,
+            totalNum,
+            `status`,
+            difficulty,
+            auditStatus,
+            isReview,
+            isOpen,
+            isPublish,
+            isSubjectShuffle,
+            isItemShuffle,
+            isAnonymAudit,
+            isCompletionAudit,
+            clientType,
+            breakNum,
+            studyPoints,
+            studyPlanId,
+            creator,
+            createTime,
+            updater,
+            updateTime,
+        </trim>
+        values
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="pid != null">
+                #{pid,jdbcType=VARCHAR},
+            </if>
+            #{orgId,jdbcType=VARCHAR},
+            #{name,jdbcType=VARCHAR},
+            #{description,jdbcType=VARCHAR},
+            #{repeatNum,jdbcType=TINYINT},
+            #{startTime,jdbcType=TIMESTAMP},
+            #{endTime,jdbcType=TIMESTAMP},
+            #{limitTime,jdbcType=INTEGER},
+            #{passType,jdbcType=TINYINT},
+            #{standard,jdbcType=INTEGER},
+            #{totalNum,jdbcType=INTEGER},
+            #{status,jdbcType=TINYINT},
+            #{difficulty,jdbcType=INTEGER},
+            #{auditStatus,jdbcType=TINYINT},
+            #{isReview,jdbcType=TINYINT},
+            #{isOpen,jdbcType=TINYINT},
+            #{isPublish,jdbcType=TINYINT},
+            #{isSubjectShuffle,jdbcType=TINYINT},
+            #{isItemShuffle,jdbcType=TINYINT},
+            #{isAnonymAudit,jdbcType=TINYINT},
+            #{isCompletionAudit,jdbcType=TINYINT},
+            #{clientType,jdbcType=TINYINT},
+            #{breakNum,jdbcType=TINYINT},
+            #{studyPoints,jdbcType=DOUBLE},
+            #{studyPlanId,jdbcType=VARCHAR},
+            #{creator,jdbcType=VARCHAR},
+            #{createTime,jdbcType=TIMESTAMP},
+            #{updater,jdbcType=VARCHAR},
+            #{updateTime,jdbcType=TIMESTAMP},
+        </trim>
+        on duplicate key update
+        <trim suffixOverrides=",">
+            <if test="pid != null">
+                pid = #{pid,jdbcType=VARCHAR},
+            </if>
+            orgId = #{orgId,jdbcType=VARCHAR},
+            `name` = #{name,jdbcType=VARCHAR},
+            description = #{description,jdbcType=VARCHAR},
+            repeatNum = #{repeatNum,jdbcType=TINYINT},
+            startTime = #{startTime,jdbcType=TIMESTAMP},
+            endTime = #{endTime,jdbcType=TIMESTAMP},
+            limitTime = #{limitTime,jdbcType=INTEGER},
+            passType = #{passType,jdbcType=TINYINT},
+            `standard` = #{standard,jdbcType=INTEGER},
+            totalNum = #{totalNum,jdbcType=INTEGER},
+            `status` = #{status,jdbcType=TINYINT},
+            difficulty = #{difficulty,jdbcType=INTEGER},
+            auditStatus = #{auditStatus,jdbcType=TINYINT},
+            isReview = #{isReview,jdbcType=TINYINT},
+            isOpen = #{isOpen,jdbcType=TINYINT},
+            isPublish = #{isPublish,jdbcType=TINYINT},
+            isSubjectShuffle = #{isSubjectShuffle,jdbcType=TINYINT},
+            isItemShuffle = #{isItemShuffle,jdbcType=TINYINT},
+            isAnonymAudit = #{isAnonymAudit,jdbcType=TINYINT},
+            isCompletionAudit = #{isCompletionAudit,jdbcType=TINYINT},
+            clientType = #{clientType,jdbcType=TINYINT},
+            breakNum = #{breakNum,jdbcType=TINYINT},
+            studyPoints = #{studyPoints,jdbcType=DOUBLE},
+            studyPlanId = #{studyPlanId,jdbcType=VARCHAR},
+            creator = #{creator,jdbcType=VARCHAR},
+            createTime = #{createTime,jdbcType=TIMESTAMP},
+            updater = #{updater,jdbcType=VARCHAR},
+            updateTime = #{updateTime,jdbcType=TIMESTAMP},
+        </trim>
+    </insert>
+    <insert id="insertOrUpdateWithBLOBs" keyColumn="pid" keyProperty="pid"
+            parameterType="com.ibootz.demomybatis.model.exam.Exam" useGeneratedKeys="true">
+        <!--@mbg.generated-->
+        insert into core_exam
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="pid != null">
+                pid,
+            </if>
+            orgId,
+            `name`,
+            description,
+            repeatNum,
+            startTime,
+            endTime,
+            limitTime,
+            passType,
+            `standard`,
+            totalNum,
+            `status`,
+            difficulty,
+            auditStatus,
+            isReview,
+            isOpen,
+            isPublish,
+            isSubjectShuffle,
+            isItemShuffle,
+            isAnonymAudit,
+            isCompletionAudit,
+            clientType,
+            breakNum,
+            studyPoints,
+            studyPlanId,
+            creator,
+            createTime,
+            updater,
+            updateTime,
+            logoUrl,
+            pauseContent,
+        </trim>
+        values
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="pid != null">
+                #{pid,jdbcType=VARCHAR},
+            </if>
+            #{orgId,jdbcType=VARCHAR},
+            #{name,jdbcType=VARCHAR},
+            #{description,jdbcType=VARCHAR},
+            #{repeatNum,jdbcType=TINYINT},
+            #{startTime,jdbcType=TIMESTAMP},
+            #{endTime,jdbcType=TIMESTAMP},
+            #{limitTime,jdbcType=INTEGER},
+            #{passType,jdbcType=TINYINT},
+            #{standard,jdbcType=INTEGER},
+            #{totalNum,jdbcType=INTEGER},
+            #{status,jdbcType=TINYINT},
+            #{difficulty,jdbcType=INTEGER},
+            #{auditStatus,jdbcType=TINYINT},
+            #{isReview,jdbcType=TINYINT},
+            #{isOpen,jdbcType=TINYINT},
+            #{isPublish,jdbcType=TINYINT},
+            #{isSubjectShuffle,jdbcType=TINYINT},
+            #{isItemShuffle,jdbcType=TINYINT},
+            #{isAnonymAudit,jdbcType=TINYINT},
+            #{isCompletionAudit,jdbcType=TINYINT},
+            #{clientType,jdbcType=TINYINT},
+            #{breakNum,jdbcType=TINYINT},
+            #{studyPoints,jdbcType=DOUBLE},
+            #{studyPlanId,jdbcType=VARCHAR},
+            #{creator,jdbcType=VARCHAR},
+            #{createTime,jdbcType=TIMESTAMP},
+            #{updater,jdbcType=VARCHAR},
+            #{updateTime,jdbcType=TIMESTAMP},
+            #{logoUrl,jdbcType=LONGVARCHAR},
+            #{pauseContent,jdbcType=LONGVARCHAR},
+        </trim>
+        on duplicate key update
+        <trim suffixOverrides=",">
+            <if test="pid != null">
+                pid = #{pid,jdbcType=VARCHAR},
+            </if>
+            orgId = #{orgId,jdbcType=VARCHAR},
+            `name` = #{name,jdbcType=VARCHAR},
+            description = #{description,jdbcType=VARCHAR},
+            repeatNum = #{repeatNum,jdbcType=TINYINT},
+            startTime = #{startTime,jdbcType=TIMESTAMP},
+            endTime = #{endTime,jdbcType=TIMESTAMP},
+            limitTime = #{limitTime,jdbcType=INTEGER},
+            passType = #{passType,jdbcType=TINYINT},
+            `standard` = #{standard,jdbcType=INTEGER},
+            totalNum = #{totalNum,jdbcType=INTEGER},
+            `status` = #{status,jdbcType=TINYINT},
+            difficulty = #{difficulty,jdbcType=INTEGER},
+            auditStatus = #{auditStatus,jdbcType=TINYINT},
+            isReview = #{isReview,jdbcType=TINYINT},
+            isOpen = #{isOpen,jdbcType=TINYINT},
+            isPublish = #{isPublish,jdbcType=TINYINT},
+            isSubjectShuffle = #{isSubjectShuffle,jdbcType=TINYINT},
+            isItemShuffle = #{isItemShuffle,jdbcType=TINYINT},
+            isAnonymAudit = #{isAnonymAudit,jdbcType=TINYINT},
+            isCompletionAudit = #{isCompletionAudit,jdbcType=TINYINT},
+            clientType = #{clientType,jdbcType=TINYINT},
+            breakNum = #{breakNum,jdbcType=TINYINT},
+            studyPoints = #{studyPoints,jdbcType=DOUBLE},
+            studyPlanId = #{studyPlanId,jdbcType=VARCHAR},
+            creator = #{creator,jdbcType=VARCHAR},
+            createTime = #{createTime,jdbcType=TIMESTAMP},
+            updater = #{updater,jdbcType=VARCHAR},
+            updateTime = #{updateTime,jdbcType=TIMESTAMP},
+            logoUrl = #{logoUrl,jdbcType=LONGVARCHAR},
+            pauseContent = #{pauseContent,jdbcType=LONGVARCHAR},
+        </trim>
+    </insert>
+    <insert id="insertOrUpdateSelective" keyColumn="pid" keyProperty="pid"
+            parameterType="com.ibootz.demomybatis.model.exam.Exam" useGeneratedKeys="true">
+        <!--@mbg.generated-->
+        insert into core_exam
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="pid != null">
+                pid,
+            </if>
+            <if test="orgId != null">
+                orgId,
+            </if>
+            <if test="name != null">
+                `name`,
+            </if>
+            <if test="description != null">
+                description,
+            </if>
+            <if test="repeatNum != null">
+                repeatNum,
+            </if>
+            <if test="startTime != null">
+                startTime,
+            </if>
+            <if test="endTime != null">
+                endTime,
+            </if>
+            <if test="limitTime != null">
+                limitTime,
+            </if>
+            <if test="passType != null">
+                passType,
+            </if>
+            <if test="standard != null">
+                `standard`,
+            </if>
+            <if test="totalNum != null">
+                totalNum,
+            </if>
+            <if test="status != null">
+                `status`,
+            </if>
+            <if test="difficulty != null">
+                difficulty,
+            </if>
+            <if test="auditStatus != null">
+                auditStatus,
+            </if>
+            <if test="isReview != null">
+                isReview,
+            </if>
+            <if test="isOpen != null">
+                isOpen,
+            </if>
+            <if test="isPublish != null">
+                isPublish,
+            </if>
+            <if test="isSubjectShuffle != null">
+                isSubjectShuffle,
+            </if>
+            <if test="isItemShuffle != null">
+                isItemShuffle,
+            </if>
+            <if test="isAnonymAudit != null">
+                isAnonymAudit,
+            </if>
+            <if test="isCompletionAudit != null">
+                isCompletionAudit,
+            </if>
+            <if test="clientType != null">
+                clientType,
+            </if>
+            <if test="breakNum != null">
+                breakNum,
+            </if>
+            <if test="studyPoints != null">
+                studyPoints,
+            </if>
+            <if test="studyPlanId != null">
+                studyPlanId,
+            </if>
+            <if test="creator != null">
+                creator,
+            </if>
+            <if test="createTime != null">
+                createTime,
+            </if>
+            <if test="updater != null">
+                updater,
+            </if>
+            <if test="updateTime != null">
+                updateTime,
+            </if>
+            <if test="logoUrl != null">
+                logoUrl,
+            </if>
+            <if test="pauseContent != null">
+                pauseContent,
+            </if>
+        </trim>
+        values
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="pid != null">
+                #{pid,jdbcType=VARCHAR},
+            </if>
+            <if test="orgId != null">
+                #{orgId,jdbcType=VARCHAR},
+            </if>
+            <if test="name != null">
+                #{name,jdbcType=VARCHAR},
+            </if>
+            <if test="description != null">
+                #{description,jdbcType=VARCHAR},
+            </if>
+            <if test="repeatNum != null">
+                #{repeatNum,jdbcType=TINYINT},
+            </if>
+            <if test="startTime != null">
+                #{startTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="endTime != null">
+                #{endTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="limitTime != null">
+                #{limitTime,jdbcType=INTEGER},
+            </if>
+            <if test="passType != null">
+                #{passType,jdbcType=TINYINT},
+            </if>
+            <if test="standard != null">
+                #{standard,jdbcType=INTEGER},
+            </if>
+            <if test="totalNum != null">
+                #{totalNum,jdbcType=INTEGER},
+            </if>
+            <if test="status != null">
+                #{status,jdbcType=TINYINT},
+            </if>
+            <if test="difficulty != null">
+                #{difficulty,jdbcType=INTEGER},
+            </if>
+            <if test="auditStatus != null">
+                #{auditStatus,jdbcType=TINYINT},
+            </if>
+            <if test="isReview != null">
+                #{isReview,jdbcType=TINYINT},
+            </if>
+            <if test="isOpen != null">
+                #{isOpen,jdbcType=TINYINT},
+            </if>
+            <if test="isPublish != null">
+                #{isPublish,jdbcType=TINYINT},
+            </if>
+            <if test="isSubjectShuffle != null">
+                #{isSubjectShuffle,jdbcType=TINYINT},
+            </if>
+            <if test="isItemShuffle != null">
+                #{isItemShuffle,jdbcType=TINYINT},
+            </if>
+            <if test="isAnonymAudit != null">
+                #{isAnonymAudit,jdbcType=TINYINT},
+            </if>
+            <if test="isCompletionAudit != null">
+                #{isCompletionAudit,jdbcType=TINYINT},
+            </if>
+            <if test="clientType != null">
+                #{clientType,jdbcType=TINYINT},
+            </if>
+            <if test="breakNum != null">
+                #{breakNum,jdbcType=TINYINT},
+            </if>
+            <if test="studyPoints != null">
+                #{studyPoints,jdbcType=DOUBLE},
+            </if>
+            <if test="studyPlanId != null">
+                #{studyPlanId,jdbcType=VARCHAR},
+            </if>
+            <if test="creator != null">
+                #{creator,jdbcType=VARCHAR},
+            </if>
+            <if test="createTime != null">
+                #{createTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="updater != null">
+                #{updater,jdbcType=VARCHAR},
+            </if>
+            <if test="updateTime != null">
+                #{updateTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="logoUrl != null">
+                #{logoUrl,jdbcType=LONGVARCHAR},
+            </if>
+            <if test="pauseContent != null">
+                #{pauseContent,jdbcType=LONGVARCHAR},
+            </if>
+        </trim>
+        on duplicate key update
+        <trim suffixOverrides=",">
+            <if test="pid != null">
+                pid = #{pid,jdbcType=VARCHAR},
+            </if>
+            <if test="orgId != null">
+                orgId = #{orgId,jdbcType=VARCHAR},
+            </if>
+            <if test="name != null">
+                `name` = #{name,jdbcType=VARCHAR},
+            </if>
+            <if test="description != null">
+                description = #{description,jdbcType=VARCHAR},
+            </if>
+            <if test="repeatNum != null">
+                repeatNum = #{repeatNum,jdbcType=TINYINT},
+            </if>
+            <if test="startTime != null">
+                startTime = #{startTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="endTime != null">
+                endTime = #{endTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="limitTime != null">
+                limitTime = #{limitTime,jdbcType=INTEGER},
+            </if>
+            <if test="passType != null">
+                passType = #{passType,jdbcType=TINYINT},
+            </if>
+            <if test="standard != null">
+                `standard` = #{standard,jdbcType=INTEGER},
+            </if>
+            <if test="totalNum != null">
+                totalNum = #{totalNum,jdbcType=INTEGER},
+            </if>
+            <if test="status != null">
+                `status` = #{status,jdbcType=TINYINT},
+            </if>
+            <if test="difficulty != null">
+                difficulty = #{difficulty,jdbcType=INTEGER},
+            </if>
+            <if test="auditStatus != null">
+                auditStatus = #{auditStatus,jdbcType=TINYINT},
+            </if>
+            <if test="isReview != null">
+                isReview = #{isReview,jdbcType=TINYINT},
+            </if>
+            <if test="isOpen != null">
+                isOpen = #{isOpen,jdbcType=TINYINT},
+            </if>
+            <if test="isPublish != null">
+                isPublish = #{isPublish,jdbcType=TINYINT},
+            </if>
+            <if test="isSubjectShuffle != null">
+                isSubjectShuffle = #{isSubjectShuffle,jdbcType=TINYINT},
+            </if>
+            <if test="isItemShuffle != null">
+                isItemShuffle = #{isItemShuffle,jdbcType=TINYINT},
+            </if>
+            <if test="isAnonymAudit != null">
+                isAnonymAudit = #{isAnonymAudit,jdbcType=TINYINT},
+            </if>
+            <if test="isCompletionAudit != null">
+                isCompletionAudit = #{isCompletionAudit,jdbcType=TINYINT},
+            </if>
+            <if test="clientType != null">
+                clientType = #{clientType,jdbcType=TINYINT},
+            </if>
+            <if test="breakNum != null">
+                breakNum = #{breakNum,jdbcType=TINYINT},
+            </if>
+            <if test="studyPoints != null">
+                studyPoints = #{studyPoints,jdbcType=DOUBLE},
+            </if>
+            <if test="studyPlanId != null">
+                studyPlanId = #{studyPlanId,jdbcType=VARCHAR},
+            </if>
+            <if test="creator != null">
+                creator = #{creator,jdbcType=VARCHAR},
+            </if>
+            <if test="createTime != null">
+                createTime = #{createTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="updater != null">
+                updater = #{updater,jdbcType=VARCHAR},
+            </if>
+            <if test="updateTime != null">
+                updateTime = #{updateTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="logoUrl != null">
+                logoUrl = #{logoUrl,jdbcType=LONGVARCHAR},
+            </if>
+            <if test="pauseContent != null">
+                pauseContent = #{pauseContent,jdbcType=LONGVARCHAR},
+            </if>
+        </trim>
+    </insert>
+</mapper>
