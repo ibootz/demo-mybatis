@@ -1,12 +1,12 @@
 package com.ibootz.demomybatis;
 
+import org.mybatis.spring.annotation.MapperScan;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
-/**
- * @author zhangq
- */
+/** @author zhangq */
 @SpringBootApplication
+@MapperScan(basePackages = {"com.ibootz.demomybatis.mapper"})
 public class DemoMybatisApplication {
 
   public static void main(String[] args) {
