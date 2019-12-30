@@ -1,0 +1,192 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ibootz.demomybatis.mapper.department.DepartmentBakMapper">
+    <resultMap id="BaseResultMap" type="com.ibootz.demomybatis.model.department.DepartmentBak">
+        <!--@mbg.generated-->
+        <!--@Table core_department_bak-->
+        <id column="pid" jdbcType="VARCHAR" property="pid"/>
+        <result column="org_id" jdbcType="VARCHAR" property="org_id"/>
+        <result column="parent_id" jdbcType="VARCHAR" property="parent_id"/>
+        <result column="path" jdbcType="VARCHAR" property="path"/>
+        <result column="manager_user_id" jdbcType="VARCHAR" property="manager_user_id"/>
+        <result column="department_name" jdbcType="VARCHAR" property="department_name"/>
+        <result column="description" jdbcType="VARCHAR" property="description"/>
+        <result column="creator_id" jdbcType="VARCHAR" property="creator_id"/>
+        <result column="create_time" jdbcType="TIMESTAMP" property="create_time"/>
+        <result column="update_time" jdbcType="TIMESTAMP" property="update_time"/>
+        <result column="updater_id" jdbcType="VARCHAR" property="updater_id"/>
+        <result column="function_ids" jdbcType="VARCHAR" property="function_ids"/>
+        <result column="user_count" jdbcType="INTEGER" property="user_count"/>
+        <result column="thirdparty_id" jdbcType="VARCHAR" property="thirdparty_id"/>
+        <result column="order_index" jdbcType="INTEGER" property="order_index"/>
+    </resultMap>
+    <resultMap extends="BaseResultMap" id="ResultMapWithBLOBs"
+               type="com.ibootz.demomybatis.model.department.DepartmentBak">
+        <!--@mbg.generated-->
+        <!--@Table core_department_bak-->
+        <result column="path_name" jdbcType="LONGVARCHAR" property="path_name"/>
+    </resultMap>
+    <sql id="Base_Column_List">
+        pid,org_id,parent_id,path,path_name,manager_user_id,department_name,description,creator_id,
+        create_time,update_time,updater_id,function_ids,user_count,thirdparty_id,order_index
+    </sql>
+    <sql id="Blob_Column_List">
+        <!--@mbg.generated-->
+        path_name
+    </sql>
+    <sql id="Simple_Colum_List">
+        pid,org_id,parent_id,department_name,thirdparty_id,order_index
+    </sql>
+    <select id="selectByOrgId" parameterType="string" resultType="DepartmentBak">
+        select
+        <include refid="Simple_Colum_List"></include>
+        from core_department_bak
+        where org_id = #{orgId,jdbcType=VARCHAR}
+    </select>
+    <insert id="insert" parameterType="com.ibootz.demomybatis.model.department.DepartmentBak">
+        <!--@mbg.generated-->
+        insert into core_department_bak (pid, org_id, parent_id,
+        `path`, manager_user_id, department_name,
+        description, creator_id, create_time,
+        update_time, updater_id, function_ids,
+        user_count, thirdparty_id, order_index,
+        path_name)
+        values (#{pid,jdbcType=VARCHAR}, #{org_id,jdbcType=VARCHAR}, #{parent_id,jdbcType=VARCHAR},
+        #{path,jdbcType=VARCHAR}, #{manager_user_id,jdbcType=VARCHAR},
+        #{department_name,jdbcType=VARCHAR},
+        #{description,jdbcType=VARCHAR}, #{creator_id,jdbcType=VARCHAR},
+        #{create_time,jdbcType=TIMESTAMP},
+        #{update_time,jdbcType=TIMESTAMP}, #{updater_id,jdbcType=VARCHAR},
+        #{function_ids,jdbcType=VARCHAR},
+        #{user_count,jdbcType=INTEGER}, #{thirdparty_id,jdbcType=VARCHAR},
+        #{order_index,jdbcType=INTEGER},
+        #{path_name,jdbcType=LONGVARCHAR})
+    </insert>
+    <insert id="insertSelective"
+            parameterType="com.ibootz.demomybatis.model.department.DepartmentBak">
+        <!--@mbg.generated-->
+        insert into core_department_bak
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="pid != null and pid != ''">
+                pid,
+            </if>
+            <if test="org_id != null and org_id != ''">
+                org_id,
+            </if>
+            <if test="parent_id != null and parent_id != ''">
+                parent_id,
+            </if>
+            <if test="path != null and path != ''">
+                `path`,
+            </if>
+            <if test="manager_user_id != null and manager_user_id != ''">
+                manager_user_id,
+            </if>
+            <if test="department_name != null and department_name != ''">
+                department_name,
+            </if>
+            <if test="description != null and description != ''">
+                description,
+            </if>
+            <if test="creator_id != null and creator_id != ''">
+                creator_id,
+            </if>
+            <if test="create_time != null">
+                create_time,
+            </if>
+            <if test="update_time != null">
+                update_time,
+            </if>
+            <if test="updater_id != null and updater_id != ''">
+                updater_id,
+            </if>
+            <if test="function_ids != null and function_ids != ''">
+                function_ids,
+            </if>
+            <if test="user_count != null">
+                user_count,
+            </if>
+            <if test="thirdparty_id != null and thirdparty_id != ''">
+                thirdparty_id,
+            </if>
+            <if test="order_index != null">
+                order_index,
+            </if>
+            <if test="path_name != null and path_name != ''">
+                path_name,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="pid != null and pid != ''">
+                #{pid,jdbcType=VARCHAR},
+            </if>
+            <if test="org_id != null and org_id != ''">
+                #{org_id,jdbcType=VARCHAR},
+            </if>
+            <if test="parent_id != null and parent_id != ''">
+                #{parent_id,jdbcType=VARCHAR},
+            </if>
+            <if test="path != null and path != ''">
+                #{path,jdbcType=VARCHAR},
+            </if>
+            <if test="manager_user_id != null and manager_user_id != ''">
+                #{manager_user_id,jdbcType=VARCHAR},
+            </if>
+            <if test="department_name != null and department_name != ''">
+                #{department_name,jdbcType=VARCHAR},
+            </if>
+            <if test="description != null and description != ''">
+                #{description,jdbcType=VARCHAR},
+            </if>
+            <if test="creator_id != null and creator_id != ''">
+                #{creator_id,jdbcType=VARCHAR},
+            </if>
+            <if test="create_time != null">
+                #{create_time,jdbcType=TIMESTAMP},
+            </if>
+            <if test="update_time != null">
+                #{update_time,jdbcType=TIMESTAMP},
+            </if>
+            <if test="updater_id != null and updater_id != ''">
+                #{updater_id,jdbcType=VARCHAR},
+            </if>
+            <if test="function_ids != null and function_ids != ''">
+                #{function_ids,jdbcType=VARCHAR},
+            </if>
+            <if test="user_count != null">
+                #{user_count,jdbcType=INTEGER},
+            </if>
+            <if test="thirdparty_id != null and thirdparty_id != ''">
+                #{thirdparty_id,jdbcType=VARCHAR},
+            </if>
+            <if test="order_index != null">
+                #{order_index,jdbcType=INTEGER},
+            </if>
+            <if test="path_name != null and path_name != ''">
+                #{path_name,jdbcType=LONGVARCHAR},
+            </if>
+        </trim>
+    </insert>
+    <insert id="batchInsert" parameterType="map">
+        <!--@mbg.generated-->
+        insert into core_department_bak
+        (pid, org_id, parent_id, `path`, manager_user_id, department_name, description, creator_id,
+        create_time, update_time, updater_id, function_ids, user_count, thirdparty_id,
+        order_index, path_name)
+        values
+        <foreach collection="list" item="item" separator=",">
+            (#{item.pid,jdbcType=VARCHAR}, #{item.org_id,jdbcType=VARCHAR},
+            #{item.parent_id,jdbcType=VARCHAR},
+            #{item.path,jdbcType=VARCHAR}, #{item.manager_user_id,jdbcType=VARCHAR},
+            #{item.department_name,jdbcType=VARCHAR},
+            #{item.description,jdbcType=VARCHAR}, #{item.creator_id,jdbcType=VARCHAR},
+            #{item.create_time,jdbcType=TIMESTAMP},
+            #{item.update_time,jdbcType=TIMESTAMP}, #{item.updater_id,jdbcType=VARCHAR},
+            #{item.function_ids,jdbcType=VARCHAR},
+            #{item.user_count,jdbcType=INTEGER}, #{item.thirdparty_id,jdbcType=VARCHAR},
+            #{item.order_index,jdbcType=INTEGER},
+            #{item.path_name,jdbcType=LONGVARCHAR})
+        </foreach>
+    </insert>
+</mapper>
