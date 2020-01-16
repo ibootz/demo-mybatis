@@ -1,0 +1,162 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ibootz.demomybatis.mapper.department.DepartmentMapper">
+    <resultMap id="BaseResultMap" type="com.ibootz.demomybatis.model.department.Department">
+        <!--@mbg.generated generated on Thu Jan 16 15:29:21 CST 2020.-->
+        <!--@Table core_department-->
+        <id column="pid" jdbcType="VARCHAR" property="pid"/>
+        <result column="orgId" jdbcType="VARCHAR" property="orgId"/>
+        <result column="parentId" jdbcType="VARCHAR" property="parentId"/>
+        <result column="path" jdbcType="VARCHAR" property="path"/>
+        <result column="managerUserId" jdbcType="VARCHAR" property="managerUserId"/>
+        <result column="departmentName" jdbcType="VARCHAR" property="departmentName"/>
+        <result column="description" jdbcType="VARCHAR" property="description"/>
+        <result column="creatorId" jdbcType="VARCHAR" property="creatorId"/>
+        <result column="createTime" jdbcType="TIMESTAMP" property="createTime"/>
+        <result column="updateTime" jdbcType="TIMESTAMP" property="updateTime"/>
+        <result column="updaterId" jdbcType="VARCHAR" property="updaterId"/>
+        <result column="functionIds" jdbcType="VARCHAR" property="functionIds"/>
+        <result column="userCount" jdbcType="INTEGER" property="userCount"/>
+        <result column="thirdpartyId" jdbcType="VARCHAR" property="thirdpartyId"/>
+        <result column="orderIndex" jdbcType="INTEGER" property="orderIndex"/>
+    </resultMap>
+    <resultMap extends="BaseResultMap" id="ResultMapWithBLOBs"
+               type="com.ibootz.demomybatis.model.department.Department">
+        <!--@mbg.generated generated on Thu Jan 16 15:29:21 CST 2020.-->
+        <!--@Table core_department-->
+        <result column="pathName" jdbcType="LONGVARCHAR" property="pathName"/>
+    </resultMap>
+    <sql id="Base_Column_List">
+        <!--@mbg.generated generated on Thu Jan 16 15:29:21 CST 2020.-->
+        pid, orgId, parentId, `path`, managerUserId, departmentName, description, creatorId,
+        createTime, updateTime, updaterId, functionIds, userCount, thirdpartyId, orderIndex
+    </sql>
+    <sql id="Blob_Column_List">
+        <!--@mbg.generated generated on Thu Jan 16 15:29:21 CST 2020.-->
+        pathName
+    </sql>
+    <select id="selectByOrgIdAndPathLikeOrderByCreateTimeDesc" resultMap="BaseResultMap">
+        <!--@mbg.generated-->
+        select
+        <include refid="Base_Column_List"/>
+        from core_department
+        where orgId=#{orgId,jdbcType=VARCHAR} and `path` like
+        concat('%',#{likePath,jdbcType=VARCHAR},'%') order by createTime desc
+    </select>
+    <update id="updateBatch" parameterType="java.util.List">
+        <!--@mbg.generated generated on Thu Jan 16 15:29:21 CST 2020.-->
+        update core_department
+        <trim prefix="set" suffixOverrides=",">
+            <trim prefix="orgId = case" suffix="end,">
+                <foreach collection="list" index="index" item="item">
+                    when pid = #{item.pid,jdbcType=VARCHAR} then #{item.orgId,jdbcType=VARCHAR}
+                </foreach>
+            </trim>
+            <trim prefix="parentId = case" suffix="end,">
+                <foreach collection="list" index="index" item="item">
+                    when pid = #{item.pid,jdbcType=VARCHAR} then #{item.parentId,jdbcType=VARCHAR}
+                </foreach>
+            </trim>
+            <trim prefix="`path` = case" suffix="end,">
+                <foreach collection="list" index="index" item="item">
+                    when pid = #{item.pid,jdbcType=VARCHAR} then #{item.path,jdbcType=VARCHAR}
+                </foreach>
+            </trim>
+            <trim prefix="managerUserId = case" suffix="end,">
+                <foreach collection="list" index="index" item="item">
+                    when pid = #{item.pid,jdbcType=VARCHAR} then
+                    #{item.managerUserId,jdbcType=VARCHAR}
+                </foreach>
+            </trim>
+            <trim prefix="departmentName = case" suffix="end,">
+                <foreach collection="list" index="index" item="item">
+                    when pid = #{item.pid,jdbcType=VARCHAR} then
+                    #{item.departmentName,jdbcType=VARCHAR}
+                </foreach>
+            </trim>
+            <trim prefix="description = case" suffix="end,">
+                <foreach collection="list" index="index" item="item">
+                    when pid = #{item.pid,jdbcType=VARCHAR} then
+                    #{item.description,jdbcType=VARCHAR}
+                </foreach>
+            </trim>
+            <trim prefix="creatorId = case" suffix="end,">
+                <foreach collection="list" index="index" item="item">
+                    when pid = #{item.pid,jdbcType=VARCHAR} then #{item.creatorId,jdbcType=VARCHAR}
+                </foreach>
+            </trim>
+            <trim prefix="createTime = case" suffix="end,">
+                <foreach collection="list" index="index" item="item">
+                    when pid = #{item.pid,jdbcType=VARCHAR} then
+                    #{item.createTime,jdbcType=TIMESTAMP}
+                </foreach>
+            </trim>
+            <trim prefix="updateTime = case" suffix="end,">
+                <foreach collection="list" index="index" item="item">
+                    when pid = #{item.pid,jdbcType=VARCHAR} then
+                    #{item.updateTime,jdbcType=TIMESTAMP}
+                </foreach>
+            </trim>
+            <trim prefix="updaterId = case" suffix="end,">
+                <foreach collection="list" index="index" item="item">
+                    when pid = #{item.pid,jdbcType=VARCHAR} then #{item.updaterId,jdbcType=VARCHAR}
+                </foreach>
+            </trim>
+            <trim prefix="functionIds = case" suffix="end,">
+                <foreach collection="list" index="index" item="item">
+                    when pid = #{item.pid,jdbcType=VARCHAR} then
+                    #{item.functionIds,jdbcType=VARCHAR}
+                </foreach>
+            </trim>
+            <trim prefix="userCount = case" suffix="end,">
+                <foreach collection="list" index="index" item="item">
+                    when pid = #{item.pid,jdbcType=VARCHAR} then #{item.userCount,jdbcType=INTEGER}
+                </foreach>
+            </trim>
+            <trim prefix="thirdpartyId = case" suffix="end,">
+                <foreach collection="list" index="index" item="item">
+                    when pid = #{item.pid,jdbcType=VARCHAR} then
+                    #{item.thirdpartyId,jdbcType=VARCHAR}
+                </foreach>
+            </trim>
+            <trim prefix="orderIndex = case" suffix="end,">
+                <foreach collection="list" index="index" item="item">
+                    when pid = #{item.pid,jdbcType=VARCHAR} then #{item.orderIndex,jdbcType=INTEGER}
+                </foreach>
+            </trim>
+            <trim prefix="pathName = case" suffix="end,">
+                <foreach collection="list" index="index" item="item">
+                    when pid = #{item.pid,jdbcType=VARCHAR} then
+                    #{item.pathName,jdbcType=LONGVARCHAR}
+                </foreach>
+            </trim>
+        </trim>
+        where pid in
+        <foreach close=")" collection="list" item="item" open="(" separator=", ">
+            #{item.pid,jdbcType=VARCHAR}
+        </foreach>
+    </update>
+    <insert id="batchInsert" keyColumn="pid" keyProperty="pid" parameterType="map"
+            useGeneratedKeys="true">
+        <!--@mbg.generated generated on Thu Jan 16 15:29:21 CST 2020.-->
+        insert into core_department
+        (orgId, parentId, `path`, managerUserId, departmentName, description, creatorId,
+        createTime, updateTime, updaterId, functionIds, userCount, thirdpartyId, orderIndex,
+        pathName)
+        values
+        <foreach collection="list" item="item" separator=",">
+            (#{item.orgId,jdbcType=VARCHAR}, #{item.parentId,jdbcType=VARCHAR},
+            #{item.path,jdbcType=VARCHAR},
+            #{item.managerUserId,jdbcType=VARCHAR}, #{item.departmentName,jdbcType=VARCHAR},
+            #{item.description,jdbcType=VARCHAR}, #{item.creatorId,jdbcType=VARCHAR},
+            #{item.createTime,jdbcType=TIMESTAMP},
+            #{item.updateTime,jdbcType=TIMESTAMP}, #{item.updaterId,jdbcType=VARCHAR},
+            #{item.functionIds,jdbcType=VARCHAR},
+            #{item.userCount,jdbcType=INTEGER}, #{item.thirdpartyId,jdbcType=VARCHAR},
+            #{item.orderIndex,jdbcType=INTEGER},
+            #{item.pathName,jdbcType=LONGVARCHAR})
+        </foreach>
+    </insert>
+    <cache readOnly="true"/>
+</mapper>

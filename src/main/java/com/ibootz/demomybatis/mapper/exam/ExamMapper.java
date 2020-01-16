@@ -1,16 +1,17 @@
-package com.ibootz.demomybatis.mapper.department;
+package com.ibootz.demomybatis.mapper.exam;
 
-import com.ibootz.demomybatis.model.department.Exam;
 import java.util.List;
-import org.apache.ibatis.annotations.Mapper;
+
 import org.apache.ibatis.annotations.Param;
+
+import com.ibootz.demomybatis.model.exam.Exam;
 
 /**
  * TODO
+ *
  * @author zhangq
- * @since 2019/12/23 16:38
+ * @since 2020/1/15 10:00
  */
-@Mapper
 public interface ExamMapper {
     int deleteByPrimaryKey(String pid);
 
@@ -26,7 +27,8 @@ public interface ExamMapper {
 
     int updateByPrimaryKey(Exam record);
 
-    int updateBatchSelective(List<Exam> list);
+    List<Exam> findByOrgIdAndPassType(
+            @Param("orgId") String orgId, @Param("passType") Byte passType);
 
     int batchInsert(@Param("list") List<Exam> list);
 }
