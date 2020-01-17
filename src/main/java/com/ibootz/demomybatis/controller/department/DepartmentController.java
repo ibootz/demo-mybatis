@@ -6,6 +6,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
 import com.ibootz.demomybatis.service.department.DepartmentService;
 
 /**
@@ -18,10 +19,11 @@ import com.ibootz.demomybatis.service.department.DepartmentService;
 @RequestMapping("/departments")
 public class DepartmentController {
 
-    @Resource private DepartmentService departmentService;
+    @Resource
+    private DepartmentService departmentService;
 
     @GetMapping(path = "/testCache")
-    public void testCache() {
+    public void testCache() throws JsonProcessingException {
         departmentService.testCache();
     }
 }

@@ -10,7 +10,7 @@ import com.ibootz.demomybatis.model.exam.Exam;
  * TODO
  *
  * @author zhangq
- * @since 2020/1/15 10:00
+ * @since 2020/1/17 11:30
  */
 public interface ExamMapper {
     int deleteByPrimaryKey(String pid);
@@ -27,8 +27,8 @@ public interface ExamMapper {
 
     int updateByPrimaryKey(Exam record);
 
-    List<Exam> findByOrgIdAndPassType(
-            @Param("orgId") String orgId, @Param("passType") Byte passType);
+    List<Exam> findByOrgIdAndPassType(@Param("orgId") String orgId,
+            @Param("passType") Byte passType);
 
     int batchInsert(@Param("list") List<Exam> list);
 }

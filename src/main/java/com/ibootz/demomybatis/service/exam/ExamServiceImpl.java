@@ -22,7 +22,8 @@ import lombok.extern.slf4j.Slf4j;
 @Service
 public class ExamServiceImpl implements ExamService {
 
-    @Resource private ExamMapper examMapper;
+    @Resource
+    private ExamMapper examMapper;
 
     @Override
     public int batchInsert(List<Exam> list) {

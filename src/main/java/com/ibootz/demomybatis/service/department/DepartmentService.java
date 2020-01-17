@@ -4,7 +4,9 @@ import java.util.List;
 
 import org.springframework.transaction.annotation.Transactional;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
 import com.ibootz.demomybatis.model.department.Department;
+
 /**
  * TODO
  *
@@ -19,6 +21,6 @@ public interface DepartmentService {
 
     int batchInsert(List<Department> list);
 
-    @Transactional(rollbackFor = {Exception.class})
-    void testCache();
+    @Transactional(rollbackFor = { Exception.class })
+    void testCache() throws JsonProcessingException;
 }

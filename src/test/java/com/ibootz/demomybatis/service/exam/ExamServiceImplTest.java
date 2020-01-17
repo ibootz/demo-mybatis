@@ -18,14 +18,18 @@ import org.springframework.test.context.junit.jupiter.SpringExtension;
 @SpringBootTest
 class ExamServiceImplTest {
 
-    @Autowired ExamService examService;
+    @Autowired
+    ExamService examService;
 
     @BeforeEach
-    void setUp() {}
+    void setUp() {
+    }
 
     @AfterEach
-    void tearDown() {}
+    void tearDown() {
+    }
 
     @Test
-    void testCache() {}
+    void testCache() {
+    }
 }

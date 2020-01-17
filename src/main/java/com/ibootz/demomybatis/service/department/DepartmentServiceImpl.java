@@ -4,14 +4,18 @@ import java.util.List;
 
 import javax.annotation.Resource;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.github.pagehelper.Page;
+import com.github.pagehelper.PageHelper;
 import com.ibootz.demomybatis.mapper.department.DepartmentMapper;
 import com.ibootz.demomybatis.model.department.Department;
 
 import lombok.extern.slf4j.Slf4j;
-import tk.mybatis.mapper.entity.Example;
 
 /**
  * TODO
@@ -23,11 +27,15 @@ import tk.mybatis.mapper.entity.Example;
 @Service
 public class DepartmentServiceImpl implements DepartmentService {
 
-    @Resource private DepartmentMapper departmentMapper;
+    @Resource
+    private DepartmentMapper departmentMapper;
+
+    @Autowired
+    private ObjectMapper jacksonObjectMapper;
 
     @Override
-    public List<Department> selectByOrgIdAndPathLikeOrderByCreateTimeDesc(
-            String orgId, String likePath) {
+    public List<Department> selectByOrgIdAndPathLikeOrderByCreateTimeDesc(String orgId,
+            String likePath) {
         return departmentMapper.selectByOrgIdAndPathLikeOrderByCreateTimeDesc(orgId, likePath);
     }
 
@@ -42,18 +50,21 @@ public class DepartmentServiceImpl implements DepartmentService {
     }
 
     @Override
-    @Transactional(rollbackFor = {Exception.class})
-    public void testCache() {
-        String orgId = "d08e9dec-8e61-4736-a205-7c9f08de3f33";
-        String pathLike =
-                ";c38237f4-de5a-4a56-8e0f-81f7d1b0121e;000f5685-b92e-4300-967d-d18ac65e679a;83d53836-89e7-4bf2-8071-feb1b5a3c638";
-        Department dept =
-                departmentMapper
-                        .selectByOrgIdAndPathLikeOrderByCreateTimeDesc(orgId, pathLike)
-                        .get(0);
-        Department example = new Department();
-        example.setOrgId(orgId);
-        int count = departmentMapper.selectCount(example);
-        System.out.println(count);
+    @Transactional(rollbackFor = { Exception.class })
+    public void testCache() throws JsonProcessingException {
+        String orgId = "a379a935-226d-4836-8549-ba898f448d1c";
+        String pid = "034649dd-e9f2-40f1-9339-9da2faaf6cce";
+        String likePath = ";034649dd-e9f2-40f1-9339-9da2faaf6cce";
+
+        // 测试更新
+        Department d1 = departmentMapper.selectByPrimaryKey(pid);
+        System.out.println("d1.name:" + d1.getDepartmentName());
+        d1.setDepartmentName(d1.getDepartmentName() + "_1");
+        departmentMapper.updateByPrimaryKey(d1);
+
+        // 测试分页
+        Page<Department> departments = PageHelper.startPage(2, 10)
+                .doSelectPage(() -> departmentMapper
+                        .selectByOrgIdAndPathLikeOrderByCreateTimeDesc(orgId, likePath));
     }
 }

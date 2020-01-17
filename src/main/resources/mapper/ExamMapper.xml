@@ -68,44 +68,44 @@
         delete from core_exam
         where pid = #{pid,jdbcType=VARCHAR}
     </delete>
-    <insert id="insert" parameterType="com.ibootz.demomybatis.model.exam.Exam">
+    <insert id="insert" keyColumn="pid" keyProperty="pid"
+            parameterType="com.ibootz.demomybatis.model.exam.Exam" useGeneratedKeys="true">
         <!--@mbg.generated-->
-        insert into core_exam (pid, orgId, `name`,
-        description, repeatNum, startTime,
-        endTime, limitTime, passType,
-        `standard`, totalNum, `status`,
-        difficulty, auditStatus, isReview,
-        isOpen, isPublish, isSubjectShuffle,
-        isItemShuffle, isAnonymAudit, isCompletionAudit,
-        isOutward, clientType, breakNum,
-        studyPoints, studyPlanId, creator,
-        createTime, updater, updateTime,
-        logoUrl, pauseContent)
-        values (#{pid,jdbcType=VARCHAR}, #{orgId,jdbcType=VARCHAR}, #{name,jdbcType=VARCHAR},
-        #{description,jdbcType=VARCHAR}, #{repeatNum,jdbcType=TINYINT},
-        #{startTime,jdbcType=TIMESTAMP},
-        #{endTime,jdbcType=TIMESTAMP}, #{limitTime,jdbcType=INTEGER}, #{passType,jdbcType=TINYINT},
-        #{standard,jdbcType=INTEGER}, #{totalNum,jdbcType=INTEGER}, #{status,jdbcType=TINYINT},
-        #{difficulty,jdbcType=INTEGER}, #{auditStatus,jdbcType=TINYINT},
-        #{isReview,jdbcType=TINYINT},
-        #{isOpen,jdbcType=TINYINT}, #{isPublish,jdbcType=TINYINT},
-        #{isSubjectShuffle,jdbcType=TINYINT},
-        #{isItemShuffle,jdbcType=TINYINT}, #{isAnonymAudit,jdbcType=TINYINT},
-        #{isCompletionAudit,jdbcType=TINYINT},
-        #{isOutward,jdbcType=TINYINT}, #{clientType,jdbcType=TINYINT}, #{breakNum,jdbcType=TINYINT},
-        #{studyPoints,jdbcType=DOUBLE}, #{studyPlanId,jdbcType=VARCHAR},
-        #{creator,jdbcType=VARCHAR},
-        #{createTime,jdbcType=TIMESTAMP}, #{updater,jdbcType=VARCHAR},
-        #{updateTime,jdbcType=TIMESTAMP},
-        #{logoUrl,jdbcType=LONGVARCHAR}, #{pauseContent,jdbcType=LONGVARCHAR})
+        insert into core_exam (orgId, `name`, description,
+        repeatNum, startTime, endTime,
+        limitTime, passType, `standard`,
+        totalNum, `status`, difficulty,
+        auditStatus, isReview, isOpen,
+        isPublish, isSubjectShuffle, isItemShuffle,
+        isAnonymAudit, isCompletionAudit, isOutward,
+        clientType, breakNum, studyPoints,
+        studyPlanId, creator, createTime,
+        updater, updateTime, logoUrl,
+        pauseContent)
+        values (#{orgId,jdbcType=VARCHAR}, #{name,jdbcType=VARCHAR},
+        #{description,jdbcType=VARCHAR},
+        #{repeatNum,jdbcType=TINYINT}, #{startTime,jdbcType=TIMESTAMP},
+        #{endTime,jdbcType=TIMESTAMP},
+        #{limitTime,jdbcType=INTEGER}, #{passType,jdbcType=TINYINT}, #{standard,jdbcType=INTEGER},
+        #{totalNum,jdbcType=INTEGER}, #{status,jdbcType=TINYINT}, #{difficulty,jdbcType=INTEGER},
+        #{auditStatus,jdbcType=TINYINT}, #{isReview,jdbcType=TINYINT}, #{isOpen,jdbcType=TINYINT},
+        #{isPublish,jdbcType=TINYINT}, #{isSubjectShuffle,jdbcType=TINYINT},
+        #{isItemShuffle,jdbcType=TINYINT},
+        #{isAnonymAudit,jdbcType=TINYINT}, #{isCompletionAudit,jdbcType=TINYINT},
+        #{isOutward,jdbcType=TINYINT},
+        #{clientType,jdbcType=TINYINT}, #{breakNum,jdbcType=TINYINT},
+        #{studyPoints,jdbcType=DOUBLE},
+        #{studyPlanId,jdbcType=VARCHAR}, #{creator,jdbcType=VARCHAR},
+        #{createTime,jdbcType=TIMESTAMP},
+        #{updater,jdbcType=VARCHAR}, #{updateTime,jdbcType=TIMESTAMP},
+        #{logoUrl,jdbcType=LONGVARCHAR},
+        #{pauseContent,jdbcType=LONGVARCHAR})
     </insert>
-    <insert id="insertSelective" parameterType="com.ibootz.demomybatis.model.exam.Exam">
+    <insert id="insertSelective" keyColumn="pid" keyProperty="pid"
+            parameterType="com.ibootz.demomybatis.model.exam.Exam" useGeneratedKeys="true">
         <!--@mbg.generated-->
         insert into core_exam
         <trim prefix="(" suffix=")" suffixOverrides=",">
-            <if test="pid != null and pid != ''">
-                pid,
-            </if>
             <if test="orgId != null and orgId != ''">
                 orgId,
             </if>
@@ -201,9 +201,6 @@
             </if>
         </trim>
         <trim prefix="values (" suffix=")" suffixOverrides=",">
-            <if test="pid != null and pid != ''">
-                #{pid,jdbcType=VARCHAR},
-            </if>
             <if test="orgId != null and orgId != ''">
                 #{orgId,jdbcType=VARCHAR},
             </if>
@@ -473,34 +470,31 @@
         <!--@mbg.generated-->
         select
         <include refid="Base_Column_List"/>
-        ,
-        <include refid="Blob_Column_List"/>
         from core_exam
         where orgId=#{orgId,jdbcType=VARCHAR} and passType=#{passType,jdbcType=TINYINT}
-        order by pid;
     </select>
-    <insert id="batchInsert" parameterType="map">
+    <insert id="batchInsert" keyColumn="pid" keyProperty="pid" parameterType="map"
+            useGeneratedKeys="true">
         <!--@mbg.generated-->
         insert into core_exam
-        (pid, orgId, `name`, description, repeatNum, startTime, endTime, limitTime, passType,
+        (orgId, `name`, description, repeatNum, startTime, endTime, limitTime, passType,
         `standard`, totalNum, `status`, difficulty, auditStatus, isReview, isOpen, isPublish,
         isSubjectShuffle, isItemShuffle, isAnonymAudit, isCompletionAudit, isOutward, clientType,
         breakNum, studyPoints, studyPlanId, creator, createTime, updater, updateTime, logoUrl,
         pauseContent)
         values
         <foreach collection="list" item="item" separator=",">
-            (#{item.pid,jdbcType=VARCHAR}, #{item.orgId,jdbcType=VARCHAR},
-            #{item.name,jdbcType=VARCHAR},
-            #{item.description,jdbcType=VARCHAR}, #{item.repeatNum,jdbcType=TINYINT},
-            #{item.startTime,jdbcType=TIMESTAMP},
-            #{item.endTime,jdbcType=TIMESTAMP}, #{item.limitTime,jdbcType=INTEGER},
-            #{item.passType,jdbcType=TINYINT},
-            #{item.standard,jdbcType=INTEGER}, #{item.totalNum,jdbcType=INTEGER},
-            #{item.status,jdbcType=TINYINT},
-            #{item.difficulty,jdbcType=INTEGER}, #{item.auditStatus,jdbcType=TINYINT},
-            #{item.isReview,jdbcType=TINYINT},
-            #{item.isOpen,jdbcType=TINYINT}, #{item.isPublish,jdbcType=TINYINT},
-            #{item.isSubjectShuffle,jdbcType=TINYINT},
+            (#{item.orgId,jdbcType=VARCHAR}, #{item.name,jdbcType=VARCHAR},
+            #{item.description,jdbcType=VARCHAR},
+            #{item.repeatNum,jdbcType=TINYINT}, #{item.startTime,jdbcType=TIMESTAMP},
+            #{item.endTime,jdbcType=TIMESTAMP},
+            #{item.limitTime,jdbcType=INTEGER}, #{item.passType,jdbcType=TINYINT},
+            #{item.standard,jdbcType=INTEGER},
+            #{item.totalNum,jdbcType=INTEGER}, #{item.status,jdbcType=TINYINT},
+            #{item.difficulty,jdbcType=INTEGER},
+            #{item.auditStatus,jdbcType=TINYINT}, #{item.isReview,jdbcType=TINYINT},
+            #{item.isOpen,jdbcType=TINYINT},
+            #{item.isPublish,jdbcType=TINYINT}, #{item.isSubjectShuffle,jdbcType=TINYINT},
             #{item.isItemShuffle,jdbcType=TINYINT}, #{item.isAnonymAudit,jdbcType=TINYINT},
             #{item.isCompletionAudit,jdbcType=TINYINT}, #{item.isOutward,jdbcType=TINYINT},
             #{item.clientType,jdbcType=TINYINT}, #{item.breakNum,jdbcType=TINYINT},

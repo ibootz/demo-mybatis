@@ -28,7 +28,7 @@ pagehelper:
   support-methods-arguments: false
   reasonable: false
 mapper:
-  not-empty: true
   identity: MYSQL
-  #  style: normal
+  not-empty: true
+  style: normal
   before: true

@@ -17,7 +17,8 @@ import com.ibootz.demomybatis.service.exam.ExamService;
 @RequestMapping("/exams")
 public class ExamController {
 
-    @Autowired private ExamService examService;
+    @Autowired
+    private ExamService examService;
 
     @GetMapping(value = "/testCache")
     public void testCache() {
