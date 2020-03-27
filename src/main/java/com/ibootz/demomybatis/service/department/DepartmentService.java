@@ -2,25 +2,20 @@ package com.ibootz.demomybatis.service.department;
 
 import java.util.List;
 
-import org.springframework.transaction.annotation.Transactional;
-
-import com.fasterxml.jackson.core.JsonProcessingException;
+import com.baomidou.mybatisplus.extension.service.IService;
 import com.ibootz.demomybatis.model.department.Department;
 
 /**
  * TODO
  *
  * @author zhangq
- * @since 2020/1/14 15:48
+ * @since 2020/1/17 15:18
  */
-public interface DepartmentService {
+public interface DepartmentService extends IService<Department> {
 
-    List<Department> selectByOrgIdAndPathLikeOrderByCreateTimeDesc(String orgId, String likePath);
+  List<Department> selectByOrgIdAndPathLikeOrderByCreateTimeDesc(String orgId, String likePath);
 
-    int updateBatch(List<Department> list);
+  int updateBatchSelective(List<Department> list);
 
-    int batchInsert(List<Department> list);
-
-    @Transactional(rollbackFor = { Exception.class })
-    void testCache() throws JsonProcessingException;
+  int batchInsert(List<Department> list);
 }

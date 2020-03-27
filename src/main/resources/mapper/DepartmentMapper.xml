@@ -3,7 +3,7 @@
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.ibootz.demomybatis.mapper.department.DepartmentMapper">
     <resultMap id="BaseResultMap" type="com.ibootz.demomybatis.model.department.Department">
-        <!--@mbg.generated generated on Thu Jan 16 15:29:21 CST 2020.-->
+        <!--@mbg.generated-->
         <!--@Table core_department-->
         <id column="pid" jdbcType="VARCHAR" property="pid"/>
         <result column="orgId" jdbcType="VARCHAR" property="orgId"/>
@@ -23,17 +23,17 @@
     </resultMap>
     <resultMap extends="BaseResultMap" id="ResultMapWithBLOBs"
                type="com.ibootz.demomybatis.model.department.Department">
-        <!--@mbg.generated generated on Thu Jan 16 15:29:21 CST 2020.-->
+        <!--@mbg.generated-->
         <!--@Table core_department-->
         <result column="pathName" jdbcType="LONGVARCHAR" property="pathName"/>
     </resultMap>
     <sql id="Base_Column_List">
-        <!--@mbg.generated generated on Thu Jan 16 15:29:21 CST 2020.-->
+        <!--@mbg.generated-->
         pid, orgId, parentId, `path`, managerUserId, departmentName, description, creatorId,
         createTime, updateTime, updaterId, functionIds, userCount, thirdpartyId, orderIndex
     </sql>
     <sql id="Blob_Column_List">
-        <!--@mbg.generated generated on Thu Jan 16 15:29:21 CST 2020.-->
+        <!--@mbg.generated-->
         pathName
     </sql>
     <select id="selectByOrgIdAndPathLikeOrderByCreateTimeDesc" resultMap="BaseResultMap">
@@ -44,91 +44,126 @@
         where orgId=#{orgId,jdbcType=VARCHAR} and `path` like
         concat('%',#{likePath,jdbcType=VARCHAR},'%') order by createTime desc
     </select>
-    <update id="updateBatch" parameterType="java.util.List">
-        <!--@mbg.generated generated on Thu Jan 16 15:29:21 CST 2020.-->
+    <update id="updateBatchSelective" parameterType="java.util.List">
+        <!--@mbg.generated-->
         update core_department
         <trim prefix="set" suffixOverrides=",">
             <trim prefix="orgId = case" suffix="end,">
                 <foreach collection="list" index="index" item="item">
-                    when pid = #{item.pid,jdbcType=VARCHAR} then #{item.orgId,jdbcType=VARCHAR}
+                    <if test="item.orgId != null">
+                        when pid = #{item.pid,jdbcType=VARCHAR} then #{item.orgId,jdbcType=VARCHAR}
+                    </if>
                 </foreach>
             </trim>
             <trim prefix="parentId = case" suffix="end,">
                 <foreach collection="list" index="index" item="item">
-                    when pid = #{item.pid,jdbcType=VARCHAR} then #{item.parentId,jdbcType=VARCHAR}
+                    <if test="item.parentId != null">
+                        when pid = #{item.pid,jdbcType=VARCHAR} then
+                        #{item.parentId,jdbcType=VARCHAR}
+                    </if>
                 </foreach>
             </trim>
             <trim prefix="`path` = case" suffix="end,">
                 <foreach collection="list" index="index" item="item">
-                    when pid = #{item.pid,jdbcType=VARCHAR} then #{item.path,jdbcType=VARCHAR}
+                    <if test="item.path != null">
+                        when pid = #{item.pid,jdbcType=VARCHAR} then #{item.path,jdbcType=VARCHAR}
+                    </if>
                 </foreach>
             </trim>
             <trim prefix="managerUserId = case" suffix="end,">
                 <foreach collection="list" index="index" item="item">
-                    when pid = #{item.pid,jdbcType=VARCHAR} then
-                    #{item.managerUserId,jdbcType=VARCHAR}
+                    <if test="item.managerUserId != null">
+                        when pid = #{item.pid,jdbcType=VARCHAR} then
+                        #{item.managerUserId,jdbcType=VARCHAR}
+                    </if>
                 </foreach>
             </trim>
             <trim prefix="departmentName = case" suffix="end,">
                 <foreach collection="list" index="index" item="item">
-                    when pid = #{item.pid,jdbcType=VARCHAR} then
-                    #{item.departmentName,jdbcType=VARCHAR}
+                    <if test="item.departmentName != null">
+                        when pid = #{item.pid,jdbcType=VARCHAR} then
+                        #{item.departmentName,jdbcType=VARCHAR}
+                    </if>
                 </foreach>
             </trim>
             <trim prefix="description = case" suffix="end,">
                 <foreach collection="list" index="index" item="item">
-                    when pid = #{item.pid,jdbcType=VARCHAR} then
-                    #{item.description,jdbcType=VARCHAR}
+                    <if test="item.description != null">
+                        when pid = #{item.pid,jdbcType=VARCHAR} then
+                        #{item.description,jdbcType=VARCHAR}
+                    </if>
                 </foreach>
             </trim>
             <trim prefix="creatorId = case" suffix="end,">
                 <foreach collection="list" index="index" item="item">
-                    when pid = #{item.pid,jdbcType=VARCHAR} then #{item.creatorId,jdbcType=VARCHAR}
+                    <if test="item.creatorId != null">
+                        when pid = #{item.pid,jdbcType=VARCHAR} then
+                        #{item.creatorId,jdbcType=VARCHAR}
+                    </if>
                 </foreach>
             </trim>
             <trim prefix="createTime = case" suffix="end,">
                 <foreach collection="list" index="index" item="item">
-                    when pid = #{item.pid,jdbcType=VARCHAR} then
-                    #{item.createTime,jdbcType=TIMESTAMP}
+                    <if test="item.createTime != null">
+                        when pid = #{item.pid,jdbcType=VARCHAR} then
+                        #{item.createTime,jdbcType=TIMESTAMP}
+                    </if>
                 </foreach>
             </trim>
             <trim prefix="updateTime = case" suffix="end,">
                 <foreach collection="list" index="index" item="item">
-                    when pid = #{item.pid,jdbcType=VARCHAR} then
-                    #{item.updateTime,jdbcType=TIMESTAMP}
+                    <if test="item.updateTime != null">
+                        when pid = #{item.pid,jdbcType=VARCHAR} then
+                        #{item.updateTime,jdbcType=TIMESTAMP}
+                    </if>
                 </foreach>
             </trim>
             <trim prefix="updaterId = case" suffix="end,">
                 <foreach collection="list" index="index" item="item">
-                    when pid = #{item.pid,jdbcType=VARCHAR} then #{item.updaterId,jdbcType=VARCHAR}
+                    <if test="item.updaterId != null">
+                        when pid = #{item.pid,jdbcType=VARCHAR} then
+                        #{item.updaterId,jdbcType=VARCHAR}
+                    </if>
                 </foreach>
             </trim>
             <trim prefix="functionIds = case" suffix="end,">
                 <foreach collection="list" index="index" item="item">
-                    when pid = #{item.pid,jdbcType=VARCHAR} then
-                    #{item.functionIds,jdbcType=VARCHAR}
+                    <if test="item.functionIds != null">
+                        when pid = #{item.pid,jdbcType=VARCHAR} then
+                        #{item.functionIds,jdbcType=VARCHAR}
+                    </if>
                 </foreach>
             </trim>
             <trim prefix="userCount = case" suffix="end,">
                 <foreach collection="list" index="index" item="item">
-                    when pid = #{item.pid,jdbcType=VARCHAR} then #{item.userCount,jdbcType=INTEGER}
+                    <if test="item.userCount != null">
+                        when pid = #{item.pid,jdbcType=VARCHAR} then
+                        #{item.userCount,jdbcType=INTEGER}
+                    </if>
                 </foreach>
             </trim>
             <trim prefix="thirdpartyId = case" suffix="end,">
                 <foreach collection="list" index="index" item="item">
-                    when pid = #{item.pid,jdbcType=VARCHAR} then
-                    #{item.thirdpartyId,jdbcType=VARCHAR}
+                    <if test="item.thirdpartyId != null">
+                        when pid = #{item.pid,jdbcType=VARCHAR} then
+                        #{item.thirdpartyId,jdbcType=VARCHAR}
+                    </if>
                 </foreach>
             </trim>
             <trim prefix="orderIndex = case" suffix="end,">
                 <foreach collection="list" index="index" item="item">
-                    when pid = #{item.pid,jdbcType=VARCHAR} then #{item.orderIndex,jdbcType=INTEGER}
+                    <if test="item.orderIndex != null">
+                        when pid = #{item.pid,jdbcType=VARCHAR} then
+                        #{item.orderIndex,jdbcType=INTEGER}
+                    </if>
                 </foreach>
             </trim>
             <trim prefix="pathName = case" suffix="end,">
                 <foreach collection="list" index="index" item="item">
-                    when pid = #{item.pid,jdbcType=VARCHAR} then
-                    #{item.pathName,jdbcType=LONGVARCHAR}
+                    <if test="item.pathName != null">
+                        when pid = #{item.pid,jdbcType=VARCHAR} then
+                        #{item.pathName,jdbcType=LONGVARCHAR}
+                    </if>
                 </foreach>
             </trim>
         </trim>
@@ -139,7 +174,7 @@
     </update>
     <insert id="batchInsert" keyColumn="pid" keyProperty="pid" parameterType="map"
             useGeneratedKeys="true">
-        <!--@mbg.generated generated on Thu Jan 16 15:29:21 CST 2020.-->
+        <!--@mbg.generated-->
         insert into core_department
         (orgId, parentId, `path`, managerUserId, departmentName, description, creatorId,
         createTime, updateTime, updaterId, functionIds, userCount, thirdpartyId, orderIndex,
@@ -158,5 +193,4 @@
             #{item.pathName,jdbcType=LONGVARCHAR})
         </foreach>
     </insert>
-    <cache readOnly="true"/>
 </mapper>

@@ -14,7 +14,7 @@ logging:
     root: info
     com.ibootz: debug
     com.ibootz.demomybatis.mapper: debug
-mybatis:
+mybatis-plus:
   mapper-locations: classpath:mapper/*.xml
   type-aliases-package: com.ibootz.demomybatis.model
   configuration:
@@ -23,12 +23,3 @@ mybatis:
     cache-enabled: false
 server:
   port: 6080
-pagehelper:
-  helper-dialect: mysql
-  support-methods-arguments: false
-  reasonable: false
-mapper:
-  identity: MYSQL
-  not-empty: true
-  style: normal
-  before: true
