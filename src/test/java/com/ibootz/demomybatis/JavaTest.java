@@ -8,8 +8,5 @@ package com.ibootz.demomybatis;
  */
 public class JavaTest {
 
-  public static void main(String[] args) {
-
-  }
-
+  public static void main(String[] args) {}
 }
