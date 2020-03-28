@@ -1,0 +1,483 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ibootz.demomybatis.mapper.department.DepartmentMapper">
+    <resultMap id="BaseResultMap" type="com.ibootz.demomybatis.model.department.Department">
+        <!--@mbg.generated-->
+        <!--@Table mb_department-->
+        <id column="pid" jdbcType="BIGINT" property="pid"/>
+        <result column="orgId" jdbcType="VARCHAR" property="orgId"/>
+        <result column="parentId" jdbcType="VARCHAR" property="parentId"/>
+        <result column="path" jdbcType="VARCHAR" property="path"/>
+        <result column="managerUserId" jdbcType="VARCHAR" property="managerUserId"/>
+        <result column="departmentName" jdbcType="VARCHAR" property="departmentName"/>
+        <result column="description" jdbcType="VARCHAR" property="description"/>
+        <result column="creatorId" jdbcType="VARCHAR" property="creatorId"/>
+        <result column="createTime" jdbcType="TIMESTAMP" property="createTime"/>
+        <result column="updateTime" jdbcType="TIMESTAMP" property="updateTime"/>
+        <result column="updaterId" jdbcType="VARCHAR" property="updaterId"/>
+        <result column="functionIds" jdbcType="VARCHAR" property="functionIds"/>
+        <result column="userCount" jdbcType="INTEGER" property="userCount"/>
+        <result column="thirdpartyId" jdbcType="VARCHAR" property="thirdpartyId"/>
+        <result column="orderIndex" jdbcType="BIGINT" property="orderIndex"/>
+    </resultMap>
+    <resultMap extends="BaseResultMap" id="ResultMapWithBLOBs"
+               type="com.ibootz.demomybatis.model.department.Department">
+        <!--@mbg.generated-->
+        <!--@Table mb_department-->
+        <result column="pathName" jdbcType="LONGVARCHAR" property="pathName"/>
+    </resultMap>
+    <sql id="Base_Column_List">
+        <!--@mbg.generated-->
+        pid, orgId, parentId, `path`, managerUserId, departmentName, description, creatorId,
+        createTime, updateTime, updaterId, functionIds, userCount, thirdpartyId, orderIndex
+    </sql>
+    <sql id="Blob_Column_List">
+        <!--@mbg.generated-->
+        pathName
+    </sql>
+    <select id="findByParentIdAndDepartmentNameLikeOrderByOrderIndex" resultMap="BaseResultMap">
+        <!--@mbg.generated-->
+        select
+        <include refid="Base_Column_List"/>
+        from mb_department
+        where parentId=#{parentId,jdbcType=VARCHAR} and departmentName like
+        concat('%',#{likeDepartmentName,jdbcType=VARCHAR},'%') order by orderIndex asc
+    </select>
+    <update id="updateBatch" parameterType="java.util.List">
+        <!--@mbg.generated-->
+        update mb_department
+        <trim prefix="set" suffixOverrides=",">
+            <trim prefix="orgId = case" suffix="end,">
+                <foreach collection="list" index="index" item="item">
+                    when pid = #{item.pid,jdbcType=BIGINT} then #{item.orgId,jdbcType=VARCHAR}
+                </foreach>
+            </trim>
+            <trim prefix="parentId = case" suffix="end,">
+                <foreach collection="list" index="index" item="item">
+                    when pid = #{item.pid,jdbcType=BIGINT} then #{item.parentId,jdbcType=VARCHAR}
+                </foreach>
+            </trim>
+            <trim prefix="`path` = case" suffix="end,">
+                <foreach collection="list" index="index" item="item">
+                    when pid = #{item.pid,jdbcType=BIGINT} then #{item.path,jdbcType=VARCHAR}
+                </foreach>
+            </trim>
+            <trim prefix="managerUserId = case" suffix="end,">
+                <foreach collection="list" index="index" item="item">
+                    when pid = #{item.pid,jdbcType=BIGINT} then #{item.managerUserId,jdbcType=VARCHAR}
+                </foreach>
+            </trim>
+            <trim prefix="departmentName = case" suffix="end,">
+                <foreach collection="list" index="index" item="item">
+                    when pid = #{item.pid,jdbcType=BIGINT} then #{item.departmentName,jdbcType=VARCHAR}
+                </foreach>
+            </trim>
+            <trim prefix="description = case" suffix="end,">
+                <foreach collection="list" index="index" item="item">
+                    when pid = #{item.pid,jdbcType=BIGINT} then #{item.description,jdbcType=VARCHAR}
+                </foreach>
+            </trim>
+            <trim prefix="creatorId = case" suffix="end,">
+                <foreach collection="list" index="index" item="item">
+                    when pid = #{item.pid,jdbcType=BIGINT} then #{item.creatorId,jdbcType=VARCHAR}
+                </foreach>
+            </trim>
+            <trim prefix="createTime = case" suffix="end,">
+                <foreach collection="list" index="index" item="item">
+                    when pid = #{item.pid,jdbcType=BIGINT} then #{item.createTime,jdbcType=TIMESTAMP}
+                </foreach>
+            </trim>
+            <trim prefix="updateTime = case" suffix="end,">
+                <foreach collection="list" index="index" item="item">
+                    when pid = #{item.pid,jdbcType=BIGINT} then #{item.updateTime,jdbcType=TIMESTAMP}
+                </foreach>
+            </trim>
+            <trim prefix="updaterId = case" suffix="end,">
+                <foreach collection="list" index="index" item="item">
+                    when pid = #{item.pid,jdbcType=BIGINT} then #{item.updaterId,jdbcType=VARCHAR}
+                </foreach>
+            </trim>
+            <trim prefix="functionIds = case" suffix="end,">
+                <foreach collection="list" index="index" item="item">
+                    when pid = #{item.pid,jdbcType=BIGINT} then #{item.functionIds,jdbcType=VARCHAR}
+                </foreach>
+            </trim>
+            <trim prefix="userCount = case" suffix="end,">
+                <foreach collection="list" index="index" item="item">
+                    when pid = #{item.pid,jdbcType=BIGINT} then #{item.userCount,jdbcType=INTEGER}
+                </foreach>
+            </trim>
+            <trim prefix="thirdpartyId = case" suffix="end,">
+                <foreach collection="list" index="index" item="item">
+                    when pid = #{item.pid,jdbcType=BIGINT} then #{item.thirdpartyId,jdbcType=VARCHAR}
+                </foreach>
+            </trim>
+            <trim prefix="orderIndex = case" suffix="end,">
+                <foreach collection="list" index="index" item="item">
+                    when pid = #{item.pid,jdbcType=BIGINT} then #{item.orderIndex,jdbcType=BIGINT}
+                </foreach>
+            </trim>
+            <trim prefix="pathName = case" suffix="end,">
+                <foreach collection="list" index="index" item="item">
+                    when pid = #{item.pid,jdbcType=BIGINT} then #{item.pathName,jdbcType=LONGVARCHAR}
+                </foreach>
+            </trim>
+        </trim>
+        where pid in
+        <foreach close=")" collection="list" item="item" open="(" separator=", ">
+            #{item.pid,jdbcType=BIGINT}
+        </foreach>
+    </update>
+    <update id="updateBatchSelective" parameterType="java.util.List">
+        <!--@mbg.generated-->
+        update mb_department
+        <trim prefix="set" suffixOverrides=",">
+            <trim prefix="orgId = case" suffix="end,">
+                <foreach collection="list" index="index" item="item">
+                    <if test="item.orgId != null">
+                        when pid = #{item.pid,jdbcType=BIGINT} then #{item.orgId,jdbcType=VARCHAR}
+                    </if>
+                </foreach>
+            </trim>
+            <trim prefix="parentId = case" suffix="end,">
+                <foreach collection="list" index="index" item="item">
+                    <if test="item.parentId != null">
+                        when pid = #{item.pid,jdbcType=BIGINT} then #{item.parentId,jdbcType=VARCHAR}
+                    </if>
+                </foreach>
+            </trim>
+            <trim prefix="`path` = case" suffix="end,">
+                <foreach collection="list" index="index" item="item">
+                    <if test="item.path != null">
+                        when pid = #{item.pid,jdbcType=BIGINT} then #{item.path,jdbcType=VARCHAR}
+                    </if>
+                </foreach>
+            </trim>
+            <trim prefix="managerUserId = case" suffix="end,">
+                <foreach collection="list" index="index" item="item">
+                    <if test="item.managerUserId != null">
+                        when pid = #{item.pid,jdbcType=BIGINT} then #{item.managerUserId,jdbcType=VARCHAR}
+                    </if>
+                </foreach>
+            </trim>
+            <trim prefix="departmentName = case" suffix="end,">
+                <foreach collection="list" index="index" item="item">
+                    <if test="item.departmentName != null">
+                        when pid = #{item.pid,jdbcType=BIGINT} then #{item.departmentName,jdbcType=VARCHAR}
+                    </if>
+                </foreach>
+            </trim>
+            <trim prefix="description = case" suffix="end,">
+                <foreach collection="list" index="index" item="item">
+                    <if test="item.description != null">
+                        when pid = #{item.pid,jdbcType=BIGINT} then #{item.description,jdbcType=VARCHAR}
+                    </if>
+                </foreach>
+            </trim>
+            <trim prefix="creatorId = case" suffix="end,">
+                <foreach collection="list" index="index" item="item">
+                    <if test="item.creatorId != null">
+                        when pid = #{item.pid,jdbcType=BIGINT} then #{item.creatorId,jdbcType=VARCHAR}
+                    </if>
+                </foreach>
+            </trim>
+            <trim prefix="createTime = case" suffix="end,">
+                <foreach collection="list" index="index" item="item">
+                    <if test="item.createTime != null">
+                        when pid = #{item.pid,jdbcType=BIGINT} then #{item.createTime,jdbcType=TIMESTAMP}
+                    </if>
+                </foreach>
+            </trim>
+            <trim prefix="updateTime = case" suffix="end,">
+                <foreach collection="list" index="index" item="item">
+                    <if test="item.updateTime != null">
+                        when pid = #{item.pid,jdbcType=BIGINT} then #{item.updateTime,jdbcType=TIMESTAMP}
+                    </if>
+                </foreach>
+            </trim>
+            <trim prefix="updaterId = case" suffix="end,">
+                <foreach collection="list" index="index" item="item">
+                    <if test="item.updaterId != null">
+                        when pid = #{item.pid,jdbcType=BIGINT} then #{item.updaterId,jdbcType=VARCHAR}
+                    </if>
+                </foreach>
+            </trim>
+            <trim prefix="functionIds = case" suffix="end,">
+                <foreach collection="list" index="index" item="item">
+                    <if test="item.functionIds != null">
+                        when pid = #{item.pid,jdbcType=BIGINT} then #{item.functionIds,jdbcType=VARCHAR}
+                    </if>
+                </foreach>
+            </trim>
+            <trim prefix="userCount = case" suffix="end,">
+                <foreach collection="list" index="index" item="item">
+                    <if test="item.userCount != null">
+                        when pid = #{item.pid,jdbcType=BIGINT} then #{item.userCount,jdbcType=INTEGER}
+                    </if>
+                </foreach>
+            </trim>
+            <trim prefix="thirdpartyId = case" suffix="end,">
+                <foreach collection="list" index="index" item="item">
+                    <if test="item.thirdpartyId != null">
+                        when pid = #{item.pid,jdbcType=BIGINT} then #{item.thirdpartyId,jdbcType=VARCHAR}
+                    </if>
+                </foreach>
+            </trim>
+            <trim prefix="orderIndex = case" suffix="end,">
+                <foreach collection="list" index="index" item="item">
+                    <if test="item.orderIndex != null">
+                        when pid = #{item.pid,jdbcType=BIGINT} then #{item.orderIndex,jdbcType=BIGINT}
+                    </if>
+                </foreach>
+            </trim>
+            <trim prefix="pathName = case" suffix="end,">
+                <foreach collection="list" index="index" item="item">
+                    <if test="item.pathName != null">
+                        when pid = #{item.pid,jdbcType=BIGINT} then #{item.pathName,jdbcType=LONGVARCHAR}
+                    </if>
+                </foreach>
+            </trim>
+        </trim>
+        where pid in
+        <foreach close=")" collection="list" item="item" open="(" separator=", ">
+            #{item.pid,jdbcType=BIGINT}
+        </foreach>
+    </update>
+    <insert id="batchInsert" parameterType="map">
+        <!--@mbg.generated-->
+        insert into mb_department
+        (pid, orgId, parentId, `path`, managerUserId, departmentName, description, creatorId,
+        createTime, updateTime, updaterId, functionIds, userCount, thirdpartyId, orderIndex,
+        pathName)
+        values
+        <foreach collection="list" item="item" separator=",">
+            (#{item.pid,jdbcType=BIGINT}, #{item.orgId,jdbcType=VARCHAR}, #{item.parentId,jdbcType=VARCHAR},
+            #{item.path,jdbcType=VARCHAR}, #{item.managerUserId,jdbcType=VARCHAR},
+            #{item.departmentName,jdbcType=VARCHAR},
+            #{item.description,jdbcType=VARCHAR}, #{item.creatorId,jdbcType=VARCHAR},
+            #{item.createTime,jdbcType=TIMESTAMP},
+            #{item.updateTime,jdbcType=TIMESTAMP}, #{item.updaterId,jdbcType=VARCHAR},
+            #{item.functionIds,jdbcType=VARCHAR},
+            #{item.userCount,jdbcType=INTEGER}, #{item.thirdpartyId,jdbcType=VARCHAR},
+            #{item.orderIndex,jdbcType=BIGINT},
+            #{item.pathName,jdbcType=LONGVARCHAR})
+        </foreach>
+    </insert>
+    <insert id="insertOrUpdate" parameterType="com.ibootz.demomybatis.model.department.Department">
+        <!--@mbg.generated-->
+        insert into mb_department
+        (pid, orgId, parentId, `path`, managerUserId, departmentName, description, creatorId,
+        createTime, updateTime, updaterId, functionIds, userCount, thirdpartyId, orderIndex
+        )
+        values
+        (#{pid,jdbcType=BIGINT}, #{orgId,jdbcType=VARCHAR}, #{parentId,jdbcType=VARCHAR},
+        #{path,jdbcType=VARCHAR}, #{managerUserId,jdbcType=VARCHAR}, #{departmentName,jdbcType=VARCHAR},
+        #{description,jdbcType=VARCHAR}, #{creatorId,jdbcType=VARCHAR}, #{createTime,jdbcType=TIMESTAMP},
+        #{updateTime,jdbcType=TIMESTAMP}, #{updaterId,jdbcType=VARCHAR}, #{functionIds,jdbcType=VARCHAR},
+        #{userCount,jdbcType=INTEGER}, #{thirdpartyId,jdbcType=VARCHAR}, #{orderIndex,jdbcType=BIGINT}
+        )
+        on duplicate key update
+        pid = #{pid,jdbcType=BIGINT},
+        orgId = #{orgId,jdbcType=VARCHAR},
+        parentId = #{parentId,jdbcType=VARCHAR},
+        `path` = #{path,jdbcType=VARCHAR},
+        managerUserId = #{managerUserId,jdbcType=VARCHAR},
+        departmentName = #{departmentName,jdbcType=VARCHAR},
+        description = #{description,jdbcType=VARCHAR},
+        creatorId = #{creatorId,jdbcType=VARCHAR},
+        createTime = #{createTime,jdbcType=TIMESTAMP},
+        updateTime = #{updateTime,jdbcType=TIMESTAMP},
+        updaterId = #{updaterId,jdbcType=VARCHAR},
+        functionIds = #{functionIds,jdbcType=VARCHAR},
+        userCount = #{userCount,jdbcType=INTEGER},
+        thirdpartyId = #{thirdpartyId,jdbcType=VARCHAR},
+        orderIndex = #{orderIndex,jdbcType=BIGINT}
+    </insert>
+    <insert id="insertOrUpdateWithBLOBs" parameterType="com.ibootz.demomybatis.model.department.Department">
+        <!--@mbg.generated-->
+        insert into mb_department
+        (pid, orgId, parentId, `path`, managerUserId, departmentName, description, creatorId,
+        createTime, updateTime, updaterId, functionIds, userCount, thirdpartyId, orderIndex,
+        pathName)
+        values
+        (#{pid,jdbcType=BIGINT}, #{orgId,jdbcType=VARCHAR}, #{parentId,jdbcType=VARCHAR},
+        #{path,jdbcType=VARCHAR}, #{managerUserId,jdbcType=VARCHAR}, #{departmentName,jdbcType=VARCHAR},
+        #{description,jdbcType=VARCHAR}, #{creatorId,jdbcType=VARCHAR}, #{createTime,jdbcType=TIMESTAMP},
+        #{updateTime,jdbcType=TIMESTAMP}, #{updaterId,jdbcType=VARCHAR}, #{functionIds,jdbcType=VARCHAR},
+        #{userCount,jdbcType=INTEGER}, #{thirdpartyId,jdbcType=VARCHAR}, #{orderIndex,jdbcType=BIGINT},
+        #{pathName,jdbcType=LONGVARCHAR})
+        on duplicate key update
+        pid = #{pid,jdbcType=BIGINT},
+        orgId = #{orgId,jdbcType=VARCHAR},
+        parentId = #{parentId,jdbcType=VARCHAR},
+        `path` = #{path,jdbcType=VARCHAR},
+        managerUserId = #{managerUserId,jdbcType=VARCHAR},
+        departmentName = #{departmentName,jdbcType=VARCHAR},
+        description = #{description,jdbcType=VARCHAR},
+        creatorId = #{creatorId,jdbcType=VARCHAR},
+        createTime = #{createTime,jdbcType=TIMESTAMP},
+        updateTime = #{updateTime,jdbcType=TIMESTAMP},
+        updaterId = #{updaterId,jdbcType=VARCHAR},
+        functionIds = #{functionIds,jdbcType=VARCHAR},
+        userCount = #{userCount,jdbcType=INTEGER},
+        thirdpartyId = #{thirdpartyId,jdbcType=VARCHAR},
+        orderIndex = #{orderIndex,jdbcType=BIGINT},
+        pathName = #{pathName,jdbcType=LONGVARCHAR}
+    </insert>
+    <insert id="insertOrUpdateSelective" parameterType="com.ibootz.demomybatis.model.department.Department">
+        <!--@mbg.generated-->
+        insert into mb_department
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="pid != null">
+                pid,
+            </if>
+            <if test="orgId != null">
+                orgId,
+            </if>
+            <if test="parentId != null">
+                parentId,
+            </if>
+            <if test="path != null">
+                `path`,
+            </if>
+            <if test="managerUserId != null">
+                managerUserId,
+            </if>
+            <if test="departmentName != null">
+                departmentName,
+            </if>
+            <if test="description != null">
+                description,
+            </if>
+            <if test="creatorId != null">
+                creatorId,
+            </if>
+            <if test="createTime != null">
+                createTime,
+            </if>
+            <if test="updateTime != null">
+                updateTime,
+            </if>
+            <if test="updaterId != null">
+                updaterId,
+            </if>
+            <if test="functionIds != null">
+                functionIds,
+            </if>
+            <if test="userCount != null">
+                userCount,
+            </if>
+            <if test="thirdpartyId != null">
+                thirdpartyId,
+            </if>
+            <if test="orderIndex != null">
+                orderIndex,
+            </if>
+            <if test="pathName != null">
+                pathName,
+            </if>
+        </trim>
+        values
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="pid != null">
+                #{pid,jdbcType=BIGINT},
+            </if>
+            <if test="orgId != null">
+                #{orgId,jdbcType=VARCHAR},
+            </if>
+            <if test="parentId != null">
+                #{parentId,jdbcType=VARCHAR},
+            </if>
+            <if test="path != null">
+                #{path,jdbcType=VARCHAR},
+            </if>
+            <if test="managerUserId != null">
+                #{managerUserId,jdbcType=VARCHAR},
+            </if>
+            <if test="departmentName != null">
+                #{departmentName,jdbcType=VARCHAR},
+            </if>
+            <if test="description != null">
+                #{description,jdbcType=VARCHAR},
+            </if>
+            <if test="creatorId != null">
+                #{creatorId,jdbcType=VARCHAR},
+            </if>
+            <if test="createTime != null">
+                #{createTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="updateTime != null">
+                #{updateTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="updaterId != null">
+                #{updaterId,jdbcType=VARCHAR},
+            </if>
+            <if test="functionIds != null">
+                #{functionIds,jdbcType=VARCHAR},
+            </if>
+            <if test="userCount != null">
+                #{userCount,jdbcType=INTEGER},
+            </if>
+            <if test="thirdpartyId != null">
+                #{thirdpartyId,jdbcType=VARCHAR},
+            </if>
+            <if test="orderIndex != null">
+                #{orderIndex,jdbcType=BIGINT},
+            </if>
+            <if test="pathName != null">
+                #{pathName,jdbcType=LONGVARCHAR},
+            </if>
+        </trim>
+        on duplicate key update
+        <trim suffixOverrides=",">
+            <if test="pid != null">
+                pid = #{pid,jdbcType=BIGINT},
+            </if>
+            <if test="orgId != null">
+                orgId = #{orgId,jdbcType=VARCHAR},
+            </if>
+            <if test="parentId != null">
+                parentId = #{parentId,jdbcType=VARCHAR},
+            </if>
+            <if test="path != null">
+                `path` = #{path,jdbcType=VARCHAR},
+            </if>
+            <if test="managerUserId != null">
+                managerUserId = #{managerUserId,jdbcType=VARCHAR},
+            </if>
+            <if test="departmentName != null">
+                departmentName = #{departmentName,jdbcType=VARCHAR},
+            </if>
+            <if test="description != null">
+                description = #{description,jdbcType=VARCHAR},
+            </if>
+            <if test="creatorId != null">
+                creatorId = #{creatorId,jdbcType=VARCHAR},
+            </if>
+            <if test="createTime != null">
+                createTime = #{createTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="updateTime != null">
+                updateTime = #{updateTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="updaterId != null">
+                updaterId = #{updaterId,jdbcType=VARCHAR},
+            </if>
+            <if test="functionIds != null">
+                functionIds = #{functionIds,jdbcType=VARCHAR},
+            </if>
+            <if test="userCount != null">
+                userCount = #{userCount,jdbcType=INTEGER},
+            </if>
+            <if test="thirdpartyId != null">
+                thirdpartyId = #{thirdpartyId,jdbcType=VARCHAR},
+            </if>
+            <if test="orderIndex != null">
+                orderIndex = #{orderIndex,jdbcType=BIGINT},
+            </if>
+            <if test="pathName != null">
+                pathName = #{pathName,jdbcType=LONGVARCHAR},
+            </if>
+        </trim>
+    </insert>
+</mapper>
