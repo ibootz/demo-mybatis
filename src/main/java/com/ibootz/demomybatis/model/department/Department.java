@@ -3,6 +3,7 @@ package com.ibootz.demomybatis.model.department;
 import java.io.Serializable;
 import java.time.LocalDateTime;
 
+import com.baomidou.mybatisplus.annotation.FieldFill;
 import com.baomidou.mybatisplus.annotation.IdType;
 import com.baomidou.mybatisplus.annotation.TableField;
 import com.baomidou.mybatisplus.annotation.TableId;
@@ -54,11 +55,11 @@ public class Department implements Serializable {
   private String creatorId;
 
   /** 创建时间 */
-  @TableField(value = "createTime")
+  @TableField(value = "createTime", fill = FieldFill.INSERT)
   private LocalDateTime createTime;
 
   /** 最近更新时间 */
-  @TableField(value = "updateTime")
+  @TableField(value = "updateTime", fill = FieldFill.INSERT_UPDATE, update = "now()")
   private LocalDateTime updateTime;
 
   /** 最近更新人 */

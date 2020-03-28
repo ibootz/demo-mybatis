@@ -29,4 +29,6 @@ public interface DepartmentMapper extends BaseMapper<Department> {
   int insertOrUpdateSelective(Department record);
 
   int insertOrUpdateWithBLOBs(Department record);
+
+  List<Department> findByOrgId(@Param("orgId") String orgId);
 }

@@ -26,11 +26,6 @@ public class DepartmentServiceImpl extends ServiceImpl<DepartmentMapper, Departm
   }
 
   @Override
-  public int updateBatch(List<Department> list) {
-    return baseMapper.updateBatch(list);
-  }
-
-  @Override
   public int updateBatchSelective(List<Department> list) {
     return baseMapper.updateBatchSelective(list);
   }
@@ -41,17 +36,12 @@ public class DepartmentServiceImpl extends ServiceImpl<DepartmentMapper, Departm
   }
 
   @Override
-  public int insertOrUpdate(Department record) {
-    return baseMapper.insertOrUpdate(record);
-  }
-
-  @Override
   public int insertOrUpdateSelective(Department record) {
     return baseMapper.insertOrUpdateSelective(record);
   }
 
   @Override
-  public int insertOrUpdateWithBLOBs(Department record) {
-    return baseMapper.insertOrUpdateWithBLOBs(record);
+  public int insertOrUpdate(Department record) {
+    return baseMapper.insertOrUpdate(record);
   }
 }
