@@ -3,8 +3,12 @@ package com.ibootz.demomybatis.service.department;
 import java.util.List;
 
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
+import com.baomidou.mybatisplus.core.metadata.IPage;
+import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
+import com.ibootz.demomybatis.dto.department.DepartmentQuery;
 import com.ibootz.demomybatis.mapper.department.DepartmentMapper;
 import com.ibootz.demomybatis.model.department.Department;
 
@@ -31,6 +35,7 @@ public class DepartmentServiceImpl extends ServiceImpl<DepartmentMapper, Departm
   }
 
   @Override
+  @Transactional(rollbackFor = Exception.class)
   public int batchInsert(List<Department> list) {
     return baseMapper.batchInsert(list);
   }
@@ -43,5 +48,15 @@ public class DepartmentServiceImpl extends ServiceImpl<DepartmentMapper, Departm
   @Override
   public int insertOrUpdate(Department record) {
     return baseMapper.insertOrUpdate(record);
+  }
+
+  @Override
+  public int updateBatch(List<Department> list) {
+    return baseMapper.updateBatch(list);
+  }
+
+  @Override
+  public IPage<Department> selectPages(Page<Department> page, DepartmentQuery dto) {
+    return baseMapper.selectPages(page, dto);
   }
 }

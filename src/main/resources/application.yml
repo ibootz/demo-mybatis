@@ -13,7 +13,7 @@ logging:
   level:
     root: info
     com.ibootz: debug
-    com.ibootz.demomybatis.mapper: info
+    com.ibootz.demomybatis.mapper: debug
 mybatis-plus:
   mapper-locations: classpath:mapper/*.xml
   type-aliases-package: com.ibootz.demomybatis.model

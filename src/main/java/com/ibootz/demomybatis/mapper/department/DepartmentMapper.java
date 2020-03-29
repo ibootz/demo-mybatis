@@ -5,6 +5,9 @@ import java.util.List;
 import org.apache.ibatis.annotations.Param;
 
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
+import com.baomidou.mybatisplus.core.metadata.IPage;
+import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
+import com.ibootz.demomybatis.dto.department.DepartmentQuery;
 import com.ibootz.demomybatis.model.department.Department;
 
 /**
@@ -18,7 +21,7 @@ public interface DepartmentMapper extends BaseMapper<Department> {
   List<Department> findByParentIdAndDepartmentNameLikeOrderByOrderIndex(
       @Param("parentId") String parentId, @Param("likeDepartmentName") String likeDepartmentName);
 
-  int updateBatch(List<Department> list);
+  int updateBatch(@Param("list") List<Department> list);
 
   int updateBatchSelective(List<Department> list);
 
@@ -31,4 +34,6 @@ public interface DepartmentMapper extends BaseMapper<Department> {
   int insertOrUpdateWithBLOBs(Department record);
 
   List<Department> findByOrgId(@Param("orgId") String orgId);
+
+  IPage<Department> selectPages(Page<Department> page, @Param("dto") DepartmentQuery dto);
 }

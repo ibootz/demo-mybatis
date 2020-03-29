@@ -485,4 +485,29 @@
         from mb_department
         where orgId=#{orgId,jdbcType=VARCHAR}
     </select>
+    <select id="selectPages" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List"/>
+        from mb_department
+        <where>
+            <if test="dto.orgId != null and dto.orgId != ''">
+                and orgId=#{dto.orgId,jdbcType=VARCHAR}
+            </if>
+            <if test="dto.parentId != null and dto.parentId != ''">
+                and parentId=#{dto.parentId,jdbcType=VARCHAR}
+            </if>
+            <if test="dto.createStartTime != null"><![CDATA[
+                and createTime>=#{dto.createStartTime,jdbcType=TIMESTAMP}
+            ]]></if>
+            <if test="dto.createEndTime != null"><![CDATA[
+                and createTime<#{dto.createEndTime,jdbcType=TIMESTAMP}
+            ]]></if>
+            <if test="dto.thirdpartyId != null and dto.thirdpartyId != ''">
+                and thirdpartyId=#{dto.thirdpartyId,jdbcType=VARCHAR}
+            </if>
+            <if test="dto.departmentName != null and dto.departmentName != ''">
+                and departmentName like concat('%',#{dto.departmentName,jdbcType=VARCHAR},'%')
+            </if>
+        </where>
+    </select>
 </mapper>

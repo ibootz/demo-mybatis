@@ -5,6 +5,7 @@ import java.time.LocalDateTime;
 import java.time.ZoneId;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 import org.junit.jupiter.api.Test;
@@ -12,9 +13,14 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
 
+import com.baomidou.mybatisplus.core.metadata.IPage;
+import com.baomidou.mybatisplus.core.metadata.OrderItem;
+import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
+import com.ibootz.demomybatis.dto.department.DepartmentQuery;
 import com.ibootz.demomybatis.model.department.Department;
 import com.ibootz.demomybatis.service.department.DepartmentService;
 
+import cn.hutool.core.date.DateField;
 import cn.hutool.core.util.RandomUtil;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -34,20 +40,15 @@ class departmentServiceTest extends SpringExtension {
 
   @Test
   void batchInsert() {
-    List<Department> departments = buildDepartments(10000);
-    long start = System.currentTimeMillis();
+    List<Department> departments = buildDepartments(1000);
     int rs = departmentService.batchInsert(departments);
-    System.out.println(System.currentTimeMillis() - start);
-    assertEquals(10000, rs);
+    assertEquals(1000, rs);
   }
 
   @Test
   void saveBatch() {
-    List<Department> departments = buildDepartments(10000);
-    long start = System.currentTimeMillis();
+    List<Department> departments = buildDepartments(1000);
     boolean rs = departmentService.saveBatch(departments);
-    System.out.println(System.currentTimeMillis() - start);
-
     assertTrue(rs);
   }
 
@@ -78,6 +79,32 @@ class departmentServiceTest extends SpringExtension {
   }
 
   @Test
+  void selectPage() {
+    Page<Department> page = new Page<>(9, 10, true);
+    page.addOrder(OrderItem.asc("orderIndex"), OrderItem.desc("createTime"));
+    DepartmentQuery dto = new DepartmentQuery();
+    dto.setCreateStartTime(
+        LocalDateTime.parse("2020-03-29T18:00:01", DateTimeFormatter.ISO_LOCAL_DATE_TIME));
+    dto.setCreateEndTime(
+        LocalDateTime.parse("2020-03-29T18:30:01", DateTimeFormatter.ISO_LOCAL_DATE_TIME));
+    IPage<Department> iPage = departmentService.selectPages(page, dto);
+    System.out.println(
+        iPage.getTotal()
+            + "\t"
+            + iPage.getSize()
+            + "\t"
+            + iPage.getCurrent()
+            + "\t"
+            + iPage.getPages());
+
+    iPage
+        .getRecords()
+        .forEach(
+            department ->
+                System.out.println(department.getCreateTime() + ":" + department.getOrderIndex()));
+  }
+
+  @Test
   void insertOrUpdateWithBLOBs() {}
 
   @Test
@@ -99,9 +126,13 @@ class departmentServiceTest extends SpringExtension {
 
   private Department buildDepartment() {
     long randomPost = RandomUtil.randomLong(0, Long.MAX_VALUE);
+    LocalDateTime randomDate =
+        LocalDateTime.ofInstant(
+            RandomUtil.randomDate(new Date(), DateField.SECOND, -10000, 10000).toInstant(),
+            ZoneId.systemDefault());
     return Department.builder()
         .orgId("orgId-" + randomPost)
-        //            .createTime(LocalDateTime.now())
+        .createTime(randomDate)
         .creatorId("creatorId-" + randomPost)
         .departmentName("departmentName-" + randomPost)
         .description("desc-" + randomPost)
@@ -113,7 +144,7 @@ class departmentServiceTest extends SpringExtension {
         .pathName("pathName-" + randomPost)
         .thirdpartyId("thirdpartyId-" + randomPost)
         .updaterId("updaterId-" + randomPost)
-        //            .updateTime("")
+        .updateTime(randomDate)
         .userCount(RandomUtil.randomInt(0, 999))
         .build();
   }
